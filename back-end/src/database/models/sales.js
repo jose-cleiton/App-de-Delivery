@@ -14,7 +14,7 @@ const Sales = (sequelize, DataTypes) => {
             foreignKey: true,
         },
         total_price: {
-            type: DataTypes.DECIMAL(9,2),
+            type: DataTypes.DECIMAL(10,2),
         },
         delivery_address: {
             type: DataTypes.STRING,
