@@ -16,7 +16,13 @@ class UsersController {
     return res.json({ token });
   }
 
-  async register(req, res) {}
+  async register(req, res) {
+    const { name, email, password } = req.body;
+
+    const token = await this.usersService.register(name, email, password);
+
+    return res.status(201).json({ token });
+  }
 }
 
 module.exports = { UsersController };

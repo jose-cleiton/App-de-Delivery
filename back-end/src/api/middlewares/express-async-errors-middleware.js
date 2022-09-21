@@ -10,9 +10,11 @@ class ExpressAsyncErrorMiddleware {
    */
   static handle(error, _req, res, next) {
     if (error instanceof HttpException) {
-      res.status(error.status).json({ error: error.message });
+      res.status(error.status).json({ message: error.message });
     } else {
-      res.status(500).json({ error: error.message || 'Internal server error' });
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
 
     return next();

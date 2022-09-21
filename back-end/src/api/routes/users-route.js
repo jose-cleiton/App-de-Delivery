@@ -20,7 +20,11 @@ class UsersRoute {
       userMiddleware.loginValidate,
       this.usersController.signIn,
     );
-    this.router.post('/register', this.usersController.register);
+    this.router.post(
+      '/register',
+      userMiddleware.registerValidate,
+      this.usersController.register,
+    );
   }
 }
 
