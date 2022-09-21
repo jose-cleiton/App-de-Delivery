@@ -1,6 +1,9 @@
 const { UserModel } = require('../../../database/models/users');
 const { HttpException } = require('../../errors/http-exception.error');
 
+const { HashHelper } = require('../../helpers/hash-helper');
+const { JwtHelper } = require('../../helpers/jwt-helper');
+
 class UsersService {
   constructor() {
     /**
@@ -9,15 +12,26 @@ class UsersService {
     this.usersRepository = UserModel;
   }
 
-  async signIn() {
-    console.log('🚀 UsersService.signIn', UserModel);
+  async signIn(email, password) {
+    const user = await this.usersRepository.findOne({
+      where: { email },
+      raw: true,
+    });
 
-    // Apenas exemplo para usar o error
-    if (!UserModel) {
-      throw new HttpException(500, 'Not implemented');
+    if (!user) {
+      throw new HttpException(404, 'Not found');
     }
 
-    return this.usersRepository.findAll();
+    const isPasswordValid = HashHelper.decoded(password, user.password);
+    if (!isPasswordValid) throw new HttpException(401, 'Unauthorized');
+
+    const token = JwtHelper.generate({
+      id: user.id,
+      role: user.role,
+      name: user.name,
+    });
+
+    return token;
   }
 }
 

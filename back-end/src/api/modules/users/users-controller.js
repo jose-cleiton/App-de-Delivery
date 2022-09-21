@@ -6,12 +6,17 @@ class UsersController {
     this.usersService = service;
 
     this.signIn = this.signIn.bind(this);
+    this.register = this.register.bind(this);
   }
 
   async signIn(req, res) {
-    const users = await this.usersService.signIn();
-    return res.json(users);
+    const { email, password } = req.body;
+
+    const token = await this.usersService.signIn(email, password);
+    return res.json({ token });
   }
+
+  async register(req, res) {}
 }
 
 module.exports = { UsersController };

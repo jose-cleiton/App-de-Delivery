@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { userMiddleware } = require('../middlewares/users.middleware');
 const { UsersController } = require('../modules/users/users-controller');
 const { UsersService } = require('../modules/users/users-service');
 
@@ -14,7 +15,12 @@ class UsersRoute {
   }
 
   initializeRoutes() {
-    this.router.get(`${this.path}`, this.usersController.signIn);
+    this.router.post(
+      '/login',
+      userMiddleware.loginValidate,
+      this.usersController.signIn,
+    );
+    this.router.post('/register', this.usersController.register);
   }
 }
 
