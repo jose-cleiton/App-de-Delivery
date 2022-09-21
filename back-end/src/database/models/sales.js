@@ -1,48 +1,82 @@
-const Sales = (sequelize, DataTypes) => {
-    const Sales = sequelize.define('sales', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            foreignKey: true,
-        },
-        seller_id: {
-            type: DataTypes.INTEGER,
-            foreignKey: true,
-        },
-        total_price: {
-            type: DataTypes.DECIMAL(10,2),
-        },
-        delivery_address: {
-            type: DataTypes.STRING,
-        },
-        delivery_number: {
-            type: DataTypes.STRING,
-        },
-        sale_date: {
-            type: DataTypes.DATE,
-        },
-        status: {
-            type: DataTypes.STRING,
-        }
-    }, {
-        tableName: 'sales',
-        timestamps: false,
-    })
+const { sequelize } = require('.');
+const { Model, DataTypes } = require('sequelize');
+const { UserModel } = require('./UserModel');
+const { ProductModel } = require('./ProductModel');
+const { SaleProductModel } = require('./SaleProductModel');
 
-    Sales.associate = (models) => {
-        Sales.belongsToMany(models.Users,
-            { foreignKey: 'user_id', as: 'client'})
-        Sales.belongsToMany(models.Users,
-            { foreignKey: 'seller_id', as: 'seller'})
-        Sales.hasMany(models.SalesProducts,
-            { foreignKey: 'sale_id', as: 'sale'})
-    }
+class SaleModel extends Model {}
 
-    return Sales;
-}
+SaleModel.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: UserModel,
+        key: 'id',
+      },
+    },
+    sellerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: UserModel,
+        key: 'id',
+      },
+    },
+    totalPrice: {
+      type: DataTypes.DECIMAL(9, 2),
+      allowNull: false,
+    },
+    deliveryAddress: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    deliveryNumber: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    saleDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false,
+    underscored: true,
+    modelName: 'sales',
+    sequelize,
+  },
+);
 
-module.exports  = Sales;
+SaleModel.belongsTo(UserModel, { foreignKey: 'userId', as: 'buyers' });
+UserModel.hasMany(SaleModel, { foreignKey: 'userId', as: 'purchases' });
+
+SaleModel.belongsTo(UserModel, { foreignKey: 'sellerId', as: 'sellers' });
+UserModel.hasMany(SaleModel, { foreignKey: 'sellerId', as: 'sales' });
+
+ProductModel.belongsToMany(SaleModel, {
+  through: SaleProductModel,
+  foreignKey: 'productId',
+  as: 'productsSales',
+});
+SaleModel.belongsToMany(ProductModel, {
+  through: SaleProductModel,
+  foreignKey: 'saleId',
+  as: 'salesProducts',
+});
+
+module.exports = {
+  SaleModel,
+};

@@ -1,24 +1,37 @@
-const Products = (sequelize, DataTypes) => {
-    const Products = sequelize.define('products', {
-        id: {
-            type: DataTypes.STRING,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        name: DataTypes.STRING,
-        price: DataTypes.DECIMAL(10,2),
-        url_image: DataTypes.STRING,
-    }, {
-        tableName: 'products',
-        timestamps: false,
-    })
+const { sequelize } = require('.');
+const { Model, DataTypes } = require('sequelize');
 
-    Products.associate = (models) => {
-        Products.hasMany(models.salesProducts,
-            { foreignKey: 'product_id', as: 'products'})
-    }
+class ProductModel extends Model {}
 
-    return Products;
-}
+ProductModel.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.DECIMAL(4, 2),
+      allowNull: false,
+    },
+    urlImage: {
+      type: DataTypes.STRING(200),
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false,
+    underscored: true,
+    modelName: 'products',
+    sequelize,
+  },
+);
 
-module.exports  = Products;
+module.exports = {
+  ProductModel,
+};
