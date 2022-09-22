@@ -26,7 +26,7 @@ class App {
     this.app.use(new ProductsRoute().router);
     this.app.use(new SalesRoute().router);
   }
-
+  // ignore
   config() {
     this.app.use(express.json());
     this.app.use(cors());
