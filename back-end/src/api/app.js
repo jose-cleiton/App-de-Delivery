@@ -5,9 +5,10 @@ const cors = require('cors');
 
 const {
   ExpressAsyncErrorMiddleware,
-} = require('./middlewares/express-async-errors-middleware');
+} = require('./middlewares/express-async-errors.middleware');
 
-const { UsersRoute } = require('./routes/users-route');
+const { UsersRoute } = require('./routes/users.route');
+const { ProductsRoute } = require('./routes/products.route');
 
 class App {
   constructor() {
@@ -21,6 +22,7 @@ class App {
 
   watchingRoutes() {
     this.app.use(new UsersRoute().router);
+    this.app.use(new ProductsRoute().router);
   }
 
   config() {

@@ -77,6 +77,4 @@ SaleModel.belongsToMany(ProductModel, {
   as: 'salesProducts',
 });
 
-module.exports = {
-  SaleModel,
-};
+module.exports = { SaleModel };
