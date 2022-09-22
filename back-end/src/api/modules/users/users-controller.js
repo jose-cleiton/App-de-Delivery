@@ -11,17 +11,14 @@ class UsersController {
 
   async signIn(req, res) {
     const { email, password } = req.body;
-
-    const token = await this.usersService.signIn(email, password);
-    return res.json({ token });
+    const result = await this.usersService.signIn(email, password);
+    return res.json(result);
   }
 
   async register(req, res) {
     const { name, email, password } = req.body;
-
-    const token = await this.usersService.register(name, email, password);
-
-    return res.status(201).json({ token });
+    const result = await this.usersService.register(name, email, password);
+    return res.status(201).json(result);
   }
 }
 

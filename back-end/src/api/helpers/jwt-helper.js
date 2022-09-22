@@ -13,8 +13,6 @@ class JwtHelper {
 
   static verify(token) {
     try {
-      if (!token) throw new HttpException(401, 'Token not found');
-
       const tokenPayload = jwt.verify(token, 'secret_key');
       return tokenPayload;
     } catch (error) {

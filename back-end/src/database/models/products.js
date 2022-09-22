@@ -32,6 +32,4 @@ ProductModel.init(
   },
 );
 
-module.exports = {
-  ProductModel,
-};
+module.exports = { ProductModel };

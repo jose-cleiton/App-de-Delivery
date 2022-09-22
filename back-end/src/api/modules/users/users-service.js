@@ -26,13 +26,15 @@ class UsersService {
     const isPasswordValid = HashHelper.decoded(password, user.password);
     if (!isPasswordValid) throw new HttpException(401, 'Unauthorized');
 
-    const token = JwtHelper.generate({
+    const payload = {
       id: user.id,
       role: user.role,
       name: user.name,
-    });
+    };
 
-    return token;
+    const token = JwtHelper.generate(payload);
+
+    return { ...payload, token };
   }
 
   async register(name, email, password) {
@@ -51,13 +53,15 @@ class UsersService {
       password: hashedPassword,
     });
 
-    const token = JwtHelper.generate({
+    const payload = {
       id: user.id,
       role: user.role,
       name: user.name,
-    });
+    };
 
-    return token;
+    const token = JwtHelper.generate(payload);
+
+    return { ...payload, token };
   }
 }
 
