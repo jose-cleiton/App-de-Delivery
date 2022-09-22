@@ -11,7 +11,7 @@ class SalesRoute {
      */
     this.salesController = new SalesController(new SalesServices());
     this.router = Router();
-    this.tokenMdwr = new TokenAuthMiddleware()
+    this.tokenMdwr = new TokenAuthMiddleware();
     this.initializeRoutes();
   }
 
@@ -20,7 +20,7 @@ class SalesRoute {
     this.tokenMdwr.verify,
     this.salesController.createSale);
 
-    this.router.patch(`${this.path}/:id`, this.salesController.updateStatus)
+    this.router.patch(`${this.path}/:id`, this.salesController.updateStatus);
   }
 }
 
