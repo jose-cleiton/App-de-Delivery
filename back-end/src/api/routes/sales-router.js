@@ -19,6 +19,8 @@ class SalesRoute {
     this.router.post(`${this.path}`,
     this.tokenMdwr.verify,
     this.salesController.createSale);
+
+    this.router.patch(`${this.path}/:id`, this.salesController.updateStatus)
   }
 }
 

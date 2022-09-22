@@ -1,6 +1,6 @@
 const { SaleModel } = require('../../../database/models/sales')
 const { SaleProductModel} = require('../../../database/models/salesProducts');
-
+const { HttpException } = require('../../errors/http-exception.error');
 class SalesServices {
     constructor() {
         /**
@@ -24,6 +24,17 @@ class SalesServices {
         })
 
         return payload.totalPrice;
+    }
+
+    async updateStatus(id, status) {
+        const[newStatus] = await this.sale.update(
+            { status },
+            { where: { id: Number(id) } }
+        )
+        
+        if(newStatus === 0) throw new HttpException(400, 'Bad Request')
+        
+        return newStatus;
     }
 }
 
