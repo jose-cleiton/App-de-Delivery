@@ -9,6 +9,7 @@ const {
 
 const { UsersRoute } = require('./routes/users.route');
 const { ProductsRoute } = require('./routes/products.route');
+const { SalesRoute } = require('./routes/sales-router');
 
 class App {
   constructor() {
@@ -23,8 +24,10 @@ class App {
   watchingRoutes() {
     this.app.use(new UsersRoute().router);
     this.app.use(new ProductsRoute().router);
+    this.app.use(new SalesRoute().router);
   }
 
+  // ignore
   config() {
     this.app.use(express.json());
     this.app.use(cors());
