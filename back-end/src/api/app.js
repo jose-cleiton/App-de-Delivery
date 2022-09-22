@@ -9,7 +9,7 @@ const {
 
 const { UsersRoute } = require('./routes/users.route');
 const { ProductsRoute } = require('./routes/products.route');
-
+const { SalesRoute } = require('./routes/sales-router')
 class App {
   constructor() {
     this.PORT = process.env.PORT || 3001;
@@ -23,6 +23,7 @@ class App {
   watchingRoutes() {
     this.app.use(new UsersRoute().router);
     this.app.use(new ProductsRoute().router);
+    this.app.use(new SalesRoute().router)
   }
 
   config() {
