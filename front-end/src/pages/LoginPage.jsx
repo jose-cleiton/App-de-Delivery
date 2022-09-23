@@ -1,10 +1,8 @@
-import '../styles/Login.css';
-
 import React from 'react';
+import '../styles/LoginPage.css';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
 import RockGlassImage from '../images/rockGlass.svg';
 import { getErrorOnLogin } from '../store';
 import { fetchUserLogin } from '../store/actions';
@@ -73,7 +71,9 @@ function LoginPage() {
           data-testid="common_login__button-register"
           type="button"
           className="registerButton"
-          onClick={ () => navigate('/register') }
+          onClick={ () => {
+            if (!error) { navigate('/register'); }
+          } }
         >
           Não tenho conta
         </button>

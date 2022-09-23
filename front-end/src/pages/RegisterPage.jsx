@@ -1,8 +1,8 @@
 import React from 'react';
+import '../styles/RegisterPage.css';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { getErrorOnLogin } from '../store';
 import { fetchUserRegister } from '../store/actions';
 
@@ -24,7 +24,8 @@ function RegisterPage() {
 
   return (
     <div>
-      <form onSubmit={ handleSubmit(onSubmit) }>
+      <h1 className="tituloCadastro">Cadastro</h1>
+      <form onSubmit={ handleSubmit(onSubmit) } className="registerForm">
         <label htmlFor="name">
           Nome
           <input
@@ -67,6 +68,7 @@ function RegisterPage() {
         <button
           data-testid="common_register__button-register"
           type="submit"
+          className="registerBtn"
           disabled={ !formState.isValid }
         >
           CADASTRAR
