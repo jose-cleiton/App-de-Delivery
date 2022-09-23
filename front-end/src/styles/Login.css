@@ -31,9 +31,9 @@ label input {
   border: none;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
   height: 35px;
   margin: 10px 0;
-  cursor: pointer;
 }
 
 .loginButton:disabled {
