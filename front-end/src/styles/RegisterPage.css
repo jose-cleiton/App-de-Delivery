@@ -24,6 +24,11 @@
   margin: 10px 0;
 }
 
+.registerBtn:disabled {
+  background-color: #036b68;
+  cursor: auto;
+}
+
 .tituloCadastro {
   margin: 150px auto 0;
   text-align: center;
