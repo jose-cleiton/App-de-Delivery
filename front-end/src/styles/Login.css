@@ -33,6 +33,12 @@ label input {
   color: white;
   height: 35px;
   margin: 10px 0;
+  cursor: pointer;
+}
+
+.loginButton:disabled {
+  background-color: #036b68;
+  cursor: auto;
 }
 
 .registerButton {

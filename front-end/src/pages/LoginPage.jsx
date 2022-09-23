@@ -1,32 +1,28 @@
 import '../styles/Login.css';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import RockGlassImage from '../images/rockGlass.svg';
-import { fetchUserLogin, getErrorOnLogin, setClearError } from '../store';
+import { fetchUserLogin, getErrorOnLogin } from '../store';
 
-function Login() {
+function LoginPage() {
   const dispatch = useDispatch();
   const error = useSelector(getErrorOnLogin);
   const navigate = useNavigate();
 
-  const { handleSubmit, register, formState, watch } = useForm({ context: 'login' });
+  const { handleSubmit, register, formState } = useForm({
+    context: 'login',
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  });
 
   const onSubmit = (data) => {
     dispatch(fetchUserLogin(data));
+    navigate('/customer/products');
   };
-
-  const clearError = () => {
-    const subscription = watch(() => {
-      if (error) dispatch(setClearError());
-    });
-    return () => subscription.unsubscribe();
-  };
-
-  useEffect(clearError, [watch]);
 
   return (
     <section className="login">
@@ -90,4 +86,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

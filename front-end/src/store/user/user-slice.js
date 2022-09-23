@@ -12,21 +12,17 @@ const initialState = {
 const postsSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    setClearError(state) {
-      state.error = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        ({ type }) => type.endsWith('/pending'),
+        ({ type }) => type?.startsWith('user') && type?.endsWith('/pending'),
         (state) => {
           state.loading = true;
         },
       )
       .addMatcher(
-        ({ type }) => type.endsWith('/fulfilled'),
+        ({ type }) => type?.startsWith('user') && type.endsWith('/fulfilled'),
         (state, { payload }) => {
           state.id = payload.id;
           state.role = payload.role;
@@ -36,7 +32,7 @@ const postsSlice = createSlice({
         },
       )
       .addMatcher(
-        ({ type }) => type.endsWith('/rejected'),
+        ({ type }) => type?.startsWith('user') && type.endsWith('/rejected'),
         (state, { payload }) => {
           state.error = payload.message;
           state.loading = false;
@@ -51,6 +47,6 @@ const getUser = ({ error, loading, ...user }) => user;
 
 export { getErrorOnLogin, getLoadingOnLogin, getUser };
 
-export const { setClearError } = postsSlice.actions;
+// export const {} = postsSlice.actions;
 
 export default postsSlice.reducer;

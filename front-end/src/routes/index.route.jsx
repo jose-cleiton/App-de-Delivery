@@ -1,7 +1,15 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import { Login, Register } from '../pages';
+import {
+  CheckoutPage,
+  CustomerPage,
+  LoginPage,
+  OderDetailsPage,
+  OrdersPage,
+  ProductsPage,
+  RegisterPage,
+} from '../pages';
 
 const AppRoutes = createBrowserRouter([
   {
@@ -10,28 +18,42 @@ const AppRoutes = createBrowserRouter([
   },
   {
     path: 'login',
-    element: <Login />,
+    element: <LoginPage />,
     errorElement: <div>Erro</div>,
   },
   {
     path: 'register',
-    element: <Register />,
+    element: <RegisterPage />,
   },
   {
-    path: '/customer/*',
-    element: <div>Customer</div>,
+    path: 'customer',
+    element: <CustomerPage />,
+    children: [
+      {
+        path: 'products',
+        element: <ProductsPage />,
+      },
+      {
+        path: 'checkout',
+        element: <CheckoutPage />,
+      },
+      {
+        path: 'orders',
+        element: <OrdersPage />,
+      },
+      {
+        path: 'orders/:id',
+        element: <OderDetailsPage />,
+      },
+    ],
   },
   {
-    path: 'seller/*',
+    path: 'seller',
     element: <div>Seller</div>,
   },
   {
     path: 'admin/manage',
     element: <div>Manage</div>,
-  },
-  {
-    path: '*',
-    element: <Navigate to="login" />,
   },
 ]);
 

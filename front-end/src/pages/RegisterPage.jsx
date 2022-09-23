@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { fetchUserRegister, getErrorOnLogin, setClearError } from '../store';
+import { fetchUserRegister, getErrorOnLogin } from '../store';
 
-function Register() {
+function RegisterPage() {
   const dispatch = useDispatch();
   const error = useSelector(getErrorOnLogin);
+  const navigate = useNavigate();
 
-  const { handleSubmit, register, formState, watch } = useForm({
+  const { handleSubmit, register, formState } = useForm({
     context: 'register',
     mode: 'onChange',
     reValidateMode: 'onChange',
@@ -16,16 +18,8 @@ function Register() {
 
   const onSubmit = (data) => {
     dispatch(fetchUserRegister(data));
+    navigate('/customer/products');
   };
-
-  const clearError = () => {
-    const subscription = watch(() => {
-      if (error) dispatch(setClearError());
-    });
-    return () => subscription.unsubscribe();
-  };
-
-  useEffect(clearError, [watch]);
 
   return (
     <div>
@@ -38,7 +32,7 @@ function Register() {
             className="name-input"
             placeholder="Seu nome"
             data-testid="common_register__input-name"
-            { ...register('name', { min: 12, required: true }) }
+            { ...register('name', { minLength: 12, required: true }) }
           />
         </label>
 
@@ -86,4 +80,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterPage;
