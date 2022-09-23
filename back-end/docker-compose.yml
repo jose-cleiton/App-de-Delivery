@@ -1,11 +1,14 @@
-version: "3.8"
+version: "3"
 
 services:
-  mysql:
-    image: mysql:8
-    container_name: mysql
-    restart: always
-    env_file:
-      - .env
+  # Serviço que irá rodar o node
+  
+  db:
+    container_name: store_manager_db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - $MYSQL_PORT:$MYSQL_PORT
+      # Garanta que não haverá conflitos de porta com um banco que esteja
+      # rodando localmente
+      - ${MYSQL_PORT}:${MYSQL_PORT}
