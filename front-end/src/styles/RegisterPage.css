@@ -1,0 +1,30 @@
+.registerForm {
+  align-self: center;
+  background-color: #f0fbff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 35px;
+  width: 200px;
+}
+
+.registerForm input {
+  height: 25px;
+  margin-bottom: 5px;
+}
+
+.registerBtn {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 35px;
+  margin: 10px 0;
+}
+
+.tituloCadastro {
+  margin: 150px auto 0;
+  text-align: center;
+}
