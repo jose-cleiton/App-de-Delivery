@@ -1,5 +1,7 @@
-import React from 'react';
 import './App.css';
+
+import React from 'react';
+
 import rockGlass from './images/rockGlass.svg';
 
 function App() {
