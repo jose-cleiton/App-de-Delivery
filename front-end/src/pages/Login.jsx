@@ -1,8 +1,11 @@
+import '../styles/Login.css';
+
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import RockGlassImage from '../images/rockGlass.svg';
 import { fetchUserLogin, getErrorOnLogin, setClearError } from '../store';
 
 function Login() {
@@ -26,15 +29,21 @@ function Login() {
   useEffect(clearError, [watch]);
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit(onSubmit) }>
+    <section className="login">
+      <div>
+        <img src={ RockGlassImage } alt="logo" className="logo" />
+        <h1>Zé Biritis Delivery</h1>
+      </div>
+      <form onSubmit={ handleSubmit(onSubmit) } className="loginForm">
         <label htmlFor="email">
           Email
           <input
             data-testid="common_login__input-email"
+            id="email"
             type="email"
             name="email"
-            id="email"
+            className="email"
+            placeholder="email@trybeer.com"
             { ...register('email', {
               pattern: /[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
               required: true,
@@ -46,9 +55,11 @@ function Login() {
           Password
           <input
             data-testid="common_login__input-password"
+            id="password"
             type="password"
             name="password"
-            id="password"
+            className="pass"
+            placeholder="*******"
             { ...register('password', { minLength: 6, required: true }) }
           />
         </label>
@@ -56,13 +67,15 @@ function Login() {
         <button
           data-testid="common_login__button-login"
           type="submit"
+          className="loginButton"
           disabled={ !formState.isValid }
         >
           LOGIN
         </button>
         <button
           data-testid="common_login__button-register"
-          type="submit"
+          type="button"
+          className="registerButton"
           onClick={ () => navigate('/register') }
         >
           Não tenho conta
@@ -73,7 +86,7 @@ function Login() {
         { error
           && <p data-testid="common_login__element-invalid-email">{ error }</p> }
       </div>
-    </div>
+    </section>
   );
 }
 

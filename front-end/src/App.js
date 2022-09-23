@@ -1,17 +1,11 @@
-import './App.css';
-
 import React from 'react';
 
-import rockGlass from './images/rockGlass.svg';
+import { RouterProvider } from 'react-router-dom';
+import AppRoutes from './routes/index.route';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <RouterProvider router={ AppRoutes } />
   );
 }
 
