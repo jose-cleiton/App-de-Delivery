@@ -31,8 +31,14 @@ label input {
   border: none;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
   height: 35px;
   margin: 10px 0;
+}
+
+.loginButton:disabled {
+  background-color: #036b68;
+  cursor: auto;
 }
 
 .registerButton {
