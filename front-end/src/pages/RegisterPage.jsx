@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchUserRegister, getErrorOnLogin } from '../store';
+import { getErrorOnLogin } from '../store';
+import { fetchUserRegister } from '../store/actions';
 
 function RegisterPage() {
   const dispatch = useDispatch();

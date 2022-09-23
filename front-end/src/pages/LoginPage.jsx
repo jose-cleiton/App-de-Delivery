@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import RockGlassImage from '../images/rockGlass.svg';
-import { fetchUserLogin, getErrorOnLogin } from '../store';
+import { getErrorOnLogin } from '../store';
+import { fetchUserLogin } from '../store/actions';
 
 function LoginPage() {
   const dispatch = useDispatch();
