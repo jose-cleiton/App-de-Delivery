@@ -1,15 +1,18 @@
-import React from 'react';
 import '../styles/LoginPage.css';
+
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import RockGlassImage from '../images/rockGlass.svg';
-import { getErrorOnLogin } from '../store';
+import { getErrorOnLogin, getUser, setResetUser } from '../store';
 import { fetchUserLogin } from '../store/actions';
 
 function LoginPage() {
   const dispatch = useDispatch();
   const error = useSelector(getErrorOnLogin);
+  const user = useSelector(getUser);
   const navigate = useNavigate();
 
   const { handleSubmit, register, formState } = useForm({
@@ -18,10 +21,31 @@ function LoginPage() {
     reValidateMode: 'onChange',
   });
 
+  const redirectToCostumerProducts = () => {
+    if (user.token) {
+      switch (user.role) {
+      case 'admin':
+        navigate('/admin/manager');
+        break;
+      case 'seller':
+        navigate('/seller/products');
+        break;
+      default:
+        navigate('/customer/products');
+      }
+    }
+  };
+
   const onSubmit = (data) => {
     dispatch(fetchUserLogin(data));
-    navigate('/customer/products');
   };
+
+  const resetUser = () => {
+    dispatch(setResetUser());
+  };
+
+  useEffect(resetUser, []);
+  useEffect(redirectToCostumerProducts, [user.token]);
 
   return (
     <section className="login">
@@ -67,12 +91,13 @@ function LoginPage() {
         >
           LOGIN
         </button>
+
         <button
           data-testid="common_login__button-register"
           type="button"
           className="registerButton"
           onClick={ () => {
-            if (!error) { navigate('/register'); }
+            navigate('/register');
           } }
         >
           Não tenho conta

@@ -12,7 +12,11 @@ const initialState = {
 const postsSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setResetUser(state) {
+      Object.assign(state, initialState);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -28,6 +32,7 @@ const postsSlice = createSlice({
           state.role = payload.role;
           state.name = payload.name;
           state.token = payload.token;
+          state.error = null;
           state.loading = false;
         },
       )
@@ -43,10 +48,10 @@ const postsSlice = createSlice({
 
 const getErrorOnLogin = (state) => state.user.error;
 const getLoadingOnLogin = (state) => state.user.loading;
-const getUser = ({ error, loading, ...user }) => user;
+const getUser = ({ user: { error, loading, ...data } }) => data;
 
 export { getErrorOnLogin, getLoadingOnLogin, getUser };
 
-// export const {} = postsSlice.actions;
+export const { setResetUser } = postsSlice.actions;
 
 export default postsSlice.reducer;

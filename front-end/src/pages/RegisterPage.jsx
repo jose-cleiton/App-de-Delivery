@@ -1,17 +1,21 @@
-import React from 'react';
 import '../styles/RegisterPage.css';
+
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getErrorOnLogin } from '../store';
+
+import { getErrorOnLogin, getUser, setResetUser } from '../store';
 import { fetchUserRegister } from '../store/actions';
 
 function RegisterPage() {
   const dispatch = useDispatch();
   const error = useSelector(getErrorOnLogin);
+  const user = useSelector(getUser);
+
   const navigate = useNavigate();
 
-  const { handleSubmit, register, formState } = useForm({
+  const { handleSubmit, register } = useForm({
     context: 'register',
     mode: 'onChange',
     reValidateMode: 'onChange',
@@ -19,8 +23,19 @@ function RegisterPage() {
 
   const onSubmit = (data) => {
     dispatch(fetchUserRegister(data));
-    navigate('/customer/products');
   };
+
+  const resetUser = () => {
+    if (user.token) dispatch(setResetUser());
+  };
+
+  const redirectToCostumerProducts = () => {
+    if (user.token) navigate('/customer/products');
+  };
+
+  useEffect(redirectToCostumerProducts, [user.token]);
+
+  useEffect(resetUser, []);
 
   return (
     <div>
@@ -34,7 +49,8 @@ function RegisterPage() {
             className="name-input"
             placeholder="Seu nome"
             data-testid="common_register__input-name"
-            { ...register('name', { minLength: 12, required: true }) }
+            { ...register('name') }
+            // { ...register('name', { minLength: 12, required: true }) }
           />
         </label>
 
@@ -46,6 +62,7 @@ function RegisterPage() {
             name="email"
             id="email"
             placeholder="Seu Email"
+            { ...register('email') }
             { ...register('email', {
               pattern: /[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
               required: true,
@@ -61,7 +78,8 @@ function RegisterPage() {
             name="password"
             id="password"
             placeholder="Sua senha"
-            { ...register('password', { minLength: 6, required: true }) }
+            { ...register('password') }
+            // { ...register('password', { minLength: 6, required: true }) }
           />
         </label>
 
@@ -69,7 +87,7 @@ function RegisterPage() {
           data-testid="common_register__button-register"
           type="submit"
           className="registerBtn"
-          disabled={ !formState.isValid }
+          // disabled={ !formState.isValid }
         >
           CADASTRAR
         </button>
