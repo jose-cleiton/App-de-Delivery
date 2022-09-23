@@ -1,0 +1,44 @@
+.login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.logo {
+  height: 150px;
+  width: 150px;
+}
+
+.loginForm {
+  background-color: #f0fbff;
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+label input {
+  height: 25px;
+}
+
+.loginButton {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 35px;
+  margin: 10px 0;
+}
+
+.registerButton {
+  background-color: #f0fbff;
+  border: solid 1px #036b52;
+  border-radius: 5px;
+  color: #036b52;
+  height: 35px;
+}
