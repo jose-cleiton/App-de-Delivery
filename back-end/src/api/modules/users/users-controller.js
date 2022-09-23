@@ -11,7 +11,7 @@ class UsersController {
 
   async signIn(req, res) {
     const { email, password } = req.body;
-    const result = await this.usersService.signIn(email, password);
+    const result = await this.usersService.signIn(email, password)
     return res.json(result);
   }
 

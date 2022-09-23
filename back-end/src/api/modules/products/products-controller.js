@@ -8,7 +8,7 @@ class ProductsController {
     this.findAllProducts = this.findAllProducts.bind(this);
   }
 
-  async findAllProducts(req, res) {
+  async findAllProducts(_req, res) {
     const products = await this.productsService.findAllProducts();
     return res.json(products);
   }

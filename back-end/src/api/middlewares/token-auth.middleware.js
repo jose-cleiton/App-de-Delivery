@@ -18,6 +18,18 @@ class TokenAuthMiddleware {
 
     return next();
   }
+
+  async decode(req, _res, next) {
+    const token = req.headers.authorization;
+     if (!token) {
+      throw new HttpException(this.codes.UNAUTHORIZED, 'Token not provided');
+    }
+    const { id } = JwtHelper.verify(token);
+    
+    req.body.userId = { id };
+
+    next();
+  }
 }
 
 module.exports = { TokenAuthMiddleware };
