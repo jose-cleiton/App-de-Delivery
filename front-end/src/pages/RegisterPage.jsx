@@ -15,7 +15,7 @@ function RegisterPage() {
 
   const navigate = useNavigate();
 
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register, formState } = useForm({
     context: 'register',
     mode: 'onChange',
     reValidateMode: 'onChange',
@@ -29,12 +29,7 @@ function RegisterPage() {
     if (user.token) dispatch(setResetUser());
   };
 
-  // const redirectToCostumerProducts = () => {
-  //   if (user.token) navigate('/customer/products');
-  // };
-
   useEffect(resetUser, []);
-  // useEffect(redirectToCostumerProducts, [user.token]);
   if (user.token) navigate('/customer/products');
 
   return (

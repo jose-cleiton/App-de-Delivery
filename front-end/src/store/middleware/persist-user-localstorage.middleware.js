@@ -6,10 +6,13 @@ const persistUserLocalStorageMiddleware = (store) => (next) => (action) => {
   if (action.type?.startsWith('user/')) {
     const userState = store.getState().user;
     localStorage.setItem('user', JSON.stringify(userState));
-    console.log(result.meta);
     if (userState.token) {
       result.meta.arg.navigate(handleLoginRedirect(userState.role));
     }
+  }
+
+  if (action.type === 'user/setResetUser') {
+    localStorage.removeItem('user');
   }
 
   return result;

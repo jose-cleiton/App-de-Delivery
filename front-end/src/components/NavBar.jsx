@@ -9,7 +9,6 @@ function NavBar() {
 
   const logOut = () => {
     dispatch(setResetUser());
-    localStorage.clear();
   };
 
   return (
