@@ -30,6 +30,7 @@ class UsersService {
       id: user.id,
       role: user.role,
       name: user.name,
+      email: user.email,
     };
 
     const token = JwtHelper.generate(payload);
@@ -40,7 +41,6 @@ class UsersService {
   async register(name, email, password) {
     const alreadyExists = await this.usersRepository.findOne({
       where: { [Op.or]: [{ email }, { name }] },
-      raw: true,
     });
 
     if (alreadyExists) throw new HttpException(409, 'User already exists!');
@@ -57,6 +57,7 @@ class UsersService {
       id: user.id,
       role: user.role,
       name: user.name,
+      email: user.email,
     };
 
     const token = JwtHelper.generate(payload);

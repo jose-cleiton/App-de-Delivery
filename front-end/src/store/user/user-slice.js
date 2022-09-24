@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   id: null,
   role: null,
+  email: null,
   name: null,
   token: null,
   error: null,
@@ -31,6 +32,7 @@ const userSlice = createSlice({
           state.id = payload.id;
           state.role = payload.role;
           state.name = payload.name;
+          state.email = payload.email;
           state.token = payload.token;
           state.error = null;
           state.loading = false;
