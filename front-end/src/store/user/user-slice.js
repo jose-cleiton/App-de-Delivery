@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
 };
 
-const postsSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -52,6 +52,6 @@ const getUser = ({ user: { error, loading, ...data } }) => data;
 
 export { getErrorOnLogin, getLoadingOnLogin, getUser };
 
-export const { setResetUser } = postsSlice.actions;
+export const { setResetUser } = userSlice.actions;
 
-export default postsSlice.reducer;
+export default userSlice.reducer;

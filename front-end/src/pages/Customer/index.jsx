@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
+import { NavBar } from '../../components';
+
 function CustomerPage() {
   return (
     <div>
-      <h1>Customer</h1>
+      <NavBar />
       <Outlet />
     </div>
   );
