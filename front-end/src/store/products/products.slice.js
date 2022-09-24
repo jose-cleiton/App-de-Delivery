@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchLoaderAllProducts } from '../actions';
-
 const initialState = {
   items: [],
   error: null,
@@ -13,17 +11,16 @@ const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchLoaderAllProducts.pending, (state) => {
-        state.loading = true;
-      }).addCase(fetchLoaderAllProducts.fulfilled, (state, { payload }) => {
-        state.items = payload;
-        state.error = null;
-        state.loading = false;
-      }).addCase(fetchLoaderAllProducts.rejected, (state, { payload }) => {
-        state.error = payload.message;
-        state.loading = false;
-      });
+    builder.addCase('products/fetchLoaderAllProducts/pending', (state) => {
+      state.loading = true;
+    }).addCase('products/fetchLoaderAllProducts/fulfilled', (state, action) => {
+      state.items = action.payload;
+      state.loading = false;
+      state.error = null;
+    }).addCase('products/fetchLoaderAllProducts/rejected', (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
   },
 });
 

@@ -9,4 +9,14 @@ const persistUserLocalStorageMiddleware = (store) => (next) => (action) => {
   return result;
 };
 
-export default persistUserLocalStorageMiddleware;
+const reHydrateUserFromLocalStorage = () => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    return JSON.parse(user); // re-hydrate the store
+  }
+};
+
+export {
+  persistUserLocalStorageMiddleware,
+  reHydrateUserFromLocalStorage,
+};
