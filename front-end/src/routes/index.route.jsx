@@ -59,4 +59,5 @@ const AppRoutes = createBrowserRouter([
   },
 ]);
 
+export const { navigate } = AppRoutes;
 export default AppRoutes;
