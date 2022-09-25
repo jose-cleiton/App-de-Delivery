@@ -1,12 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import ApiClient from '../api';
+import {
+  persistUserLocalStorageMiddleware,
+  reHydrateUserFromLocalStorage,
+} from './middleware';
+import productsReducer from './products/products.slice';
 import userReducer from './user/user-slice';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
+    products: productsReducer,
   },
+  preloadedState: {
+    user: reHydrateUserFromLocalStorage(),
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(persistUserLocalStorageMiddleware),
+
   devTools: process.env.NODE_ENV !== 'production',
 });
 

@@ -11,7 +11,6 @@ class ProductsRoute {
      * @type {import('../modules/products/products-controller').ProductsController}
      */
 
-    console.log('ProductsService', new ProductsService());
     this.productsController = new ProductsController(new ProductsService());
     this.router = Router();
     this.initializeRoutes();

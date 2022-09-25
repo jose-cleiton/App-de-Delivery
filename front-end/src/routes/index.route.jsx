@@ -9,6 +9,7 @@ import {
   OrdersPage,
   ProductsPage,
   RegisterPage,
+  loaderProductsPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -32,6 +33,7 @@ const AppRoutes = createBrowserRouter([
       {
         path: 'products',
         element: <ProductsPage />,
+        loader: loaderProductsPage,
       },
       {
         path: 'checkout',
@@ -57,4 +59,5 @@ const AppRoutes = createBrowserRouter([
   },
 ]);
 
+export const { navigate } = AppRoutes;
 export default AppRoutes;

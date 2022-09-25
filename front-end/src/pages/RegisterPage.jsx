@@ -15,7 +15,7 @@ function RegisterPage() {
 
   const navigate = useNavigate();
 
-  const { handleSubmit, register } = useForm({
+  const { handleSubmit, register, formState } = useForm({
     context: 'register',
     mode: 'onChange',
     reValidateMode: 'onChange',
@@ -29,13 +29,8 @@ function RegisterPage() {
     if (user.token) dispatch(setResetUser());
   };
 
-  const redirectToCostumerProducts = () => {
-    if (user.token) navigate('/customer/products');
-  };
-
-  useEffect(redirectToCostumerProducts, [user.token]);
-
   useEffect(resetUser, []);
+  if (user.token) navigate('/customer/products');
 
   return (
     <div>
@@ -49,8 +44,8 @@ function RegisterPage() {
             className="name-input"
             placeholder="Seu nome"
             data-testid="common_register__input-name"
-            { ...register('name') }
-            // { ...register('name', { minLength: 12, required: true }) }
+            // { ...register('name') }
+            { ...register('name', { minLength: 12, required: true }) }
           />
         </label>
 
@@ -62,7 +57,7 @@ function RegisterPage() {
             name="email"
             id="email"
             placeholder="Seu Email"
-            { ...register('email') }
+            // { ...register('email') }
             { ...register('email', {
               pattern: /[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
               required: true,
@@ -78,8 +73,8 @@ function RegisterPage() {
             name="password"
             id="password"
             placeholder="Sua senha"
-            { ...register('password') }
-            // { ...register('password', { minLength: 6, required: true }) }
+            // { ...register('password') }
+            { ...register('password', { minLength: 6, required: true }) }
           />
         </label>
 
@@ -87,7 +82,7 @@ function RegisterPage() {
           data-testid="common_register__button-register"
           type="submit"
           className="registerBtn"
-          // disabled={ !formState.isValid }
+          disabled={ !formState.isValid }
         >
           CADASTRAR
         </button>
