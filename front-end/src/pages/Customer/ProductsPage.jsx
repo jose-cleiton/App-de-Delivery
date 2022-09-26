@@ -1,8 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
-
-import { ProductCard } from '../../components';
+import Cart from '../../components/Cart';
 import store from '../../store';
 import { fetchLoaderAllProducts } from '../../store/actions';
+import { ProductList } from '../../components';
 
 export async function loaderProductsPage() {
   const { payload } = await store.dispatch(fetchLoaderAllProducts());
@@ -14,9 +14,8 @@ function ProductsPage() {
   return (
     <div>
       <h1>ProductsPage</h1>
-      {products.map((product) => (
-        <ProductCard key={ product.id } product={ product } />
-      ))}
+      <Cart />
+      <ProductList products={ products } />
     </div>
   );
 }
