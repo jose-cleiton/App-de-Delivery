@@ -24,6 +24,7 @@ function changeQuantity(event, id, carrinho) {
       return e;
     });
   }
+  localStorage.setItem('carrinho', JSON.stringify(aux));
   return aux;
 }
 
@@ -57,7 +58,6 @@ function ProductCard({ product }) {
           onClick={ (event) => {
             const change = changeQuantity(event, id, auxCarrinho);
             dispatch(utualizarCarrinho(change));
-            localStorage.setItem('carrinho', JSON.stringify(change));
           } }
         >
           -
@@ -79,7 +79,6 @@ function ProductCard({ product }) {
           onClick={ (event) => {
             const change = changeQuantity(event, id, auxCarrinho);
             dispatch(utualizarCarrinho(change));
-            localStorage.setItem('carrinho', JSON.stringify(change));
           } }
         >
           +

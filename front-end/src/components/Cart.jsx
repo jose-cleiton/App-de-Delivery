@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { obterCarrinho } from '../store/carrinho/carrinho.slice';
 
-export default class Cart extends Component {
-  /*   componentDidMount() {
-      this.getTotalPrice();
-    } */
-
-  /*   getTotalPrice = () => {
-      const cart = JSON.parse(localStorage.getItem('carrinho'));
-      const cartFiltered = cart.filter((item) => item.quantity);
-      const totalPrice = cartFiltered
-        .reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
-      this.setState({ totalPrice });
-    }; */
-
-  render() {
-    return (
+export default function Cart() {
+  const navigate = useNavigate();
+  const cart = useSelector(obterCarrinho);
+  const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  return (
+    <button type="button" onClick={ () => navigate('/customer/checkout') }>
       <div>
-        preço total
+        {`Ver Carrinho: R$ ${Number(total).toFixed(2)}`}
       </div>
-    );
-  }
+    </button>
+  );
 }
