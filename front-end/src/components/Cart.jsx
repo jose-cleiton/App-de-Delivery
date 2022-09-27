@@ -8,15 +8,15 @@ export default function Cart() {
   const cart = useSelector(obterCarrinho);
   const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
   return (
-    <button
-      type="button"
-      data-testid="customer_products__checkout-bottom-value"
-      onClick={ () => navigate('/customer/checkout') }
-      className="cartButton"
-    >
-      <div>
-        {`Ver Carrinho: R$ ${Number(total).toFixed(2)}`}
-      </div>
-    </button>
+    <div>
+      <button
+        type="button"
+        data-testid="customer_products__checkout-bottom-value"
+        onClick={ () => navigate('/customer/checkout') }
+        className="cartButton"
+      >
+        {Number(total).toFixed(2).replace('.', ',')}
+      </button>
+    </div>
   );
 }
