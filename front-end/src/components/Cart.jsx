@@ -6,7 +6,9 @@ import '../styles/Cart.css';
 export default function Cart() {
   const navigate = useNavigate();
   const cart = useSelector(obterCarrinho);
-  const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  console.log(cart);
+  // const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  const total = 0;
   return (
     <div>
       <button

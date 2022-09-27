@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { utualizarCarrinho } from '../../store/carrinho/carrinho.slice';
-import ApiClient from '../../api';
 
 function removeProduct(cart, productId) {
   const aux = JSON.parse(JSON.stringify(cart));
@@ -16,14 +15,7 @@ function removeProduct(cart, productId) {
   return newCart;
 }
 
-async function getSellers() {
-  const api = new ApiClient();
-  const sellers = await api.get('localhost:3001/sellers');
-  console.log(sellers);
-}
-
-async function CheckoutPage() {
-  await getSellers();
+function CheckoutPage() {
   const dispatch = useDispatch();
   const productsCart = JSON.parse(localStorage.getItem('carrinho'));
   dispatch(utualizarCarrinho(productsCart));
