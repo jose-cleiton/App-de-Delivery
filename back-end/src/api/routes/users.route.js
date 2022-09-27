@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { userMiddleware } = require('../middlewares/users.middleware');
 const { UsersController } = require('../modules/users/users-controller');
 const { UsersService } = require('../modules/users/users-service');
+const { TokenAuthMiddleware } = require('../middlewares/token-auth.middleware');
 
 class UsersRoute {
   constructor() {
@@ -11,6 +12,7 @@ class UsersRoute {
      */
     this.usersController = new UsersController(new UsersService());
     this.router = Router();
+    this.tokenMdwr = new TokenAuthMiddleware();
     this.initializeRoutes();
   }
 
@@ -24,6 +26,10 @@ class UsersRoute {
       '/register',
       userMiddleware.registerValidate,
       this.usersController.register,
+    );
+    this.router.get(
+      '/sellers',
+      this.usersController.getSellers,
     );
   }
 }
