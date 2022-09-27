@@ -10,6 +10,7 @@ export default function Cart() {
   return (
     <button
       type="button"
+      data-testid="customer_products__checkout-bottom-value"
       onClick={ () => navigate('/customer/checkout') }
       className="cartButton"
     >
