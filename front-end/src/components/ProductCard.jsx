@@ -57,6 +57,7 @@ function ProductCard({ product }) {
           onClick={ (event) => {
             const change = changeQuantity(event, id, auxCarrinho);
             dispatch(utualizarCarrinho(change));
+            localStorage.setItem('carrinho', JSON.stringify(change));
           } }
         >
           -
@@ -78,6 +79,7 @@ function ProductCard({ product }) {
           onClick={ (event) => {
             const change = changeQuantity(event, id, auxCarrinho);
             dispatch(utualizarCarrinho(change));
+            localStorage.setItem('carrinho', JSON.stringify(change));
           } }
         >
           +
