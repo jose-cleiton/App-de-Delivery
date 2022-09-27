@@ -11,11 +11,14 @@ export default function Cart() {
     <div>
       <button
         type="button"
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__checkout__button-cart"
         onClick={ () => navigate('/customer/checkout') }
         className="cartButton"
+        disabled={ total === 0 }
       >
-        {Number(total).toFixed(2).replace('.', ',')}
+        <p data-testid="customer_products__checkout-bottom-value">
+          {Number(total).toFixed(2).replace('.', ',') }
+        </p>
       </button>
     </div>
   );

@@ -75,11 +75,9 @@ function ProductCard({ product }) {
             id="quantity"
             className="quantity"
             type="number"
-            value={ carrinho.find((e) => e.id === product.id).quantity }
+            defaultValue={ carrinho.find((e) => e.id === product.id).quantity }
             min={ 0 }
-            readOnly
           />
-
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             id="increment"
