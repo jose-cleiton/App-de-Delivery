@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
-import { ProductCard } from './index';
 import '../styles/ProductsList.css';
+
+import PropTypes from 'prop-types';
+
+import { ProductCard } from './index';
 
 function ProductList({ products }) {
   localStorage.setItem('products', JSON.stringify(products));

@@ -15,6 +15,11 @@ const persistUserLocalStorageMiddleware = (store) => (next) => (action) => {
     localStorage.removeItem('user');
   }
 
+  if (action.type?.startsWith('carrinho/')) {
+    const cartProducts = store.getState().carrinho.produtos;
+    localStorage.setItem('carrinho', JSON.stringify(cartProducts));
+  }
+
   return result;
 };
 
@@ -25,7 +30,15 @@ const reHydrateUserFromLocalStorage = () => {
   }
 };
 
+const reHydrateCartFromLocalStorage = () => {
+  const user = localStorage.getItem('carrinho');
+  if (user) {
+    return JSON.parse(user);
+  }
+};
+
 export {
   persistUserLocalStorageMiddleware,
   reHydrateUserFromLocalStorage,
+  reHydrateCartFromLocalStorage,
 };
