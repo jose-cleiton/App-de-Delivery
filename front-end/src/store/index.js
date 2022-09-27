@@ -7,11 +7,13 @@ import {
 } from './middleware';
 import productsReducer from './products/products.slice';
 import userReducer from './user/user-slice';
+import carrinhoReducer from './carrinho/carrinho.slice';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
     products: productsReducer,
+    carrinho: carrinhoReducer,
   },
   preloadedState: {
     user: reHydrateUserFromLocalStorage(),
@@ -23,5 +25,6 @@ const store = configureStore({
 });
 
 export * from './user/user-slice';
+export * from './carrinho/carrinho.slice';
 export const api = new ApiClient(store);
 export default store;
