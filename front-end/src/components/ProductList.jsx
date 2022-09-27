@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { ProductCard } from './index';
+import '../styles/ProductsList.css';
 
 function ProductList({ products }) {
   localStorage.setItem('products', JSON.stringify(products));
   return (
-    <div>
+    <div className="productList">
       {products.map((product) => (
         <ProductCard key={ product.id } product={ product } />
       ))}
