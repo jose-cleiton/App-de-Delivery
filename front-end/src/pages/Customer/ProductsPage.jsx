@@ -24,8 +24,8 @@ function ProductsPage() {
   return (
     <div>
       <h1>ProductsPage</h1>
-      <Cart />
       <ProductList products={ products } />
+      <Cart />
     </div>
   );
 }
