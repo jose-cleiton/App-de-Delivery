@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { utualizarCarrinho } from '../../store/carrinho/carrinho.slice';
+import ApiClient from '../../api';
 
 function removeProduct(cart, productId) {
   const aux = JSON.parse(JSON.stringify(cart));
@@ -14,12 +16,21 @@ function removeProduct(cart, productId) {
   return newCart;
 }
 
-function CheckoutPage() {
+async function getSellers() {
+  const api = new ApiClient();
+  const sellers = await api.get('localhost:3001/sellers');
+  console.log(sellers);
+}
+
+async function CheckoutPage() {
+  await getSellers();
   const dispatch = useDispatch();
   const productsCart = JSON.parse(localStorage.getItem('carrinho'));
   dispatch(utualizarCarrinho(productsCart));
   const cart = productsCart.filter((item) => item.quantity > 0);
   const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  const [bool, setBool] = useState(true);
+  useEffect(() => {}, [bool]);
   return (
     <div>
       <h1>CheckoutPage</h1>
@@ -46,34 +57,55 @@ function CheckoutPage() {
         </thead>
         <tbody>
           { cart.map((data, index) => (
-            <tr key={ index + 1 }>
+            <tr key={ index }>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${index + 1}`
+                  `customer_checkout__element-order-table-item-number-${index}`
                 }
 
               >
                 { index + 1 }
               </td>
-              <td>
+              <td
+                data-testid={
+                  `customer_checkout__element-order-table-name-${index}`
+                }
+              >
                 { data.name }
               </td>
-              <td>
+              <td
+                data-testid={
+                  `customer_checkout__element-order-table-quantity-${index}`
+                }
+              >
                 { data.quantity }
               </td>
-              <td>
+              <td
+                data-testid={
+                  `customer_checkout__element-order-table-unit-price-${index}`
+                }
+              >
                 { Number(data.price).toFixed(2) }
               </td>
-              <td>
+              <td
+                data-testid={
+                  `customer_checkout__element-order-table-sub-total-${index + 1}`
+                }
+              >
                 { Number(data.price * data.quantity).toFixed(2) }
               </td>
-              <td>
+              <td
+                data-testid={
+                  `customer_checkout__element-order-table-remove-${index}`
+                }
+              >
                 <button
                   type="button"
                   onClick={ () => {
                     const updatedCart = removeProduct(productsCart, data.id);
                     console.log('chegou');
                     dispatch(utualizarCarrinho(updatedCart));
+                    setBool(!bool);
                   } }
                 >
                   Remover
@@ -83,7 +115,9 @@ function CheckoutPage() {
           ))}
         </tbody>
       </table>
-      <div>
+      <div
+        data-testid="customer_checkout__element-order-total-price"
+      >
         { Number(total).toFixed(2) }
       </div>
     </div>
