@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Cart from '../../components/Cart';
 import store from '../../store';
 import { fetchLoaderAllProducts } from '../../store/actions';
-import { ProductList } from '../../components';
+import ProductList from '../../components/ProductList';
 import { utualizarCarrinho } from '../../store/carrinho/carrinho.slice';
 
 export async function loaderProductsPage() {
