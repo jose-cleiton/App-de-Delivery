@@ -1,28 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { utualizarCarrinho } from '../../store/carrinho/carrinho.slice';
-
-function removeProduct(cart, productId) {
-  const aux = JSON.parse(JSON.stringify(cart));
-  const newCart = aux.map((item) => {
-    if (item.id === productId) {
-      item.quantity = 0;
-      return item;
-    }
-    return item;
-  });
-  localStorage.setItem('carrinho', JSON.stringify(newCart));
-  return newCart;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { removeProduct, obterCarrinho, obterValorTotal }
+  from '../../store/carrinho/carrinho.slice';
 
 function CheckoutPage() {
   const dispatch = useDispatch();
-  const productsCart = JSON.parse(localStorage.getItem('carrinho'));
-  dispatch(utualizarCarrinho(productsCart));
-  const cart = productsCart.filter((item) => item.quantity > 0);
-  const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
-  const [bool, setBool] = useState(true);
-  useEffect(() => {}, [bool]);
+  const cart = useSelector(obterCarrinho);
+  const total = useSelector(obterValorTotal);
   return (
     <div>
       <h1>CheckoutPage</h1>
@@ -94,10 +77,7 @@ function CheckoutPage() {
                 <button
                   type="button"
                   onClick={ () => {
-                    const updatedCart = removeProduct(productsCart, data.id);
-                    console.log('chegou');
-                    dispatch(utualizarCarrinho(updatedCart));
-                    setBool(!bool);
+                    dispatch(removeProduct(data.id));
                   } }
                 >
                   Remover
@@ -110,7 +90,7 @@ function CheckoutPage() {
       <div
         data-testid="customer_checkout__element-order-total-price"
       >
-        { Number(total).toFixed(2) }
+        { Number(total).toFixed(2).replace('.', ',')}
       </div>
     </div>
   );
