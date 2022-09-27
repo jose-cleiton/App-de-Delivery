@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import ApiClient from '../api';
+import carrinhoReducer from './carrinho/carrinho.slice';
 import {
   persistUserLocalStorageMiddleware,
+  reHydrateCartFromLocalStorage,
   reHydrateUserFromLocalStorage,
 } from './middleware';
 import productsReducer from './products/products.slice';
 import userReducer from './user/user-slice';
-import carrinhoReducer from './carrinho/carrinho.slice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
   },
   preloadedState: {
     user: reHydrateUserFromLocalStorage(),
+    carrinho: { produtos: reHydrateCartFromLocalStorage() },
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(persistUserLocalStorageMiddleware),

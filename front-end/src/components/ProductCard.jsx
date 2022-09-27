@@ -1,39 +1,34 @@
-import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import { obterCarrinho } from '../store/carrinho/carrinho.slice';
-import { utualizarCarrinho } from '../store';
 import '../styles/ProductCard.css';
 
-function changeQuantity(event, id, carrinho) {
-  const tipo = event.target.id;
-  const aux = JSON.parse(JSON.stringify(carrinho));
-  if (tipo === 'increment') {
-    aux.map((e) => {
-      if (e.id === id) {
-        e.quantity += 1;
-        return e;
-      }
-      return e;
-    });
-  }
-  if (tipo === 'decrement') {
-    aux.map((e) => {
-      if (e.id === id && e.quantity > 0) {
-        e.quantity -= 1;
-        return e;
-      }
-      return e;
-    });
-  }
-  localStorage.setItem('carrinho', JSON.stringify(aux));
-  return aux;
-}
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  getProductQuantity,
+  setDecrementProduct,
+  setIncrementProduct,
+  setQuantityProduct,
+} from '../store';
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const { id, name, urlImage, price } = product;
-  const carrinho = useSelector(obterCarrinho);
-  const auxCarrinho = [...carrinho];
+  const quantity = useSelector(getProductQuantity(id)) || 0;
+
+  const increment = () => {
+    dispatch(setIncrementProduct(product));
+  };
+
+  const decrement = () => {
+    dispatch(setDecrementProduct(product));
+  };
+
+  const changeQuantity = ({ target }) => {
+    const { value } = target;
+    const inputQuantity = Number(value) || 0;
+    dispatch(setQuantityProduct({ ...product, quantity: inputQuantity }));
+  };
+
   return (
     <div className="productCard">
       <div className="upperPart">
@@ -62,10 +57,7 @@ function ProductCard({ product }) {
             id="decrement"
             className="decrement"
             type="button"
-            onClick={ (event) => {
-              const change = changeQuantity(event, id, auxCarrinho);
-              dispatch(utualizarCarrinho(change));
-            } }
+            onClick={ decrement }
           >
             -
           </button>
@@ -74,19 +66,17 @@ function ProductCard({ product }) {
             data-testid={ `customer_products__input-card-quantity-${id}` }
             id="quantity"
             className="quantity"
-            type="number"
-            defaultValue={ carrinho.find((e) => e.id === product.id).quantity }
+            value={ quantity }
+            onChange={ changeQuantity }
             min={ 0 }
           />
+
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             id="increment"
             type="button"
             className="increment"
-            onClick={ (event) => {
-              const change = changeQuantity(event, id, auxCarrinho);
-              dispatch(utualizarCarrinho(change));
-            } }
+            onClick={ increment }
           >
             +
           </button>
