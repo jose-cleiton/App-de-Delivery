@@ -18,7 +18,7 @@ const store = configureStore({
   },
   preloadedState: {
     user: reHydrateUserFromLocalStorage(),
-    carrinho: { produtos: reHydrateCartFromLocalStorage() },
+    carrinho: { produtos: reHydrateCartFromLocalStorage() || [] },
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(persistUserLocalStorageMiddleware),

@@ -16,8 +16,7 @@ const carrinhoSlice = createSlice({
 
       if (product) {
         product.quantity += 1;
-        state.produtos = state.produtos
-          .splice(state.produtos.indexOf(product), 1, product);
+        state.produtos = state.produtos.map((p) => (p.id === payload.id ? product : p));
       } else {
         state.produtos.push({ ...payload, quantity: 1 });
       }
@@ -30,10 +29,9 @@ const carrinhoSlice = createSlice({
       if (product.quantity > 0) {
         product.quantity -= 1;
         if (product.quantity === 0) {
-          state.produtos.splice(productId, 1);
+          state.produtos = state.produtos.filter((p) => p.id !== payload.id);
         } else {
-          state.produtos = state.produtos
-            .splice(productId, 1, product);
+          state.produtos = state.produtos.map((p) => (p.id === payload.id ? product : p));
         }
       }
     },
@@ -43,18 +41,17 @@ const carrinhoSlice = createSlice({
 
       if (product) {
         product.quantity = payload.quantity;
-        state.produtos = state.produtos
-          .splice(productId, 1, product);
+        state.produtos = state.produtos.map((p) => (p.id === payload.id ? product : p));
       } else {
-        state.produtos.push({ ...payload, quantity: payload.quantity });
+        state.produtos = [...state.produtos, { ...payload, quantity: 1 }];
       }
     },
   },
 });
 
 const obterCarrinho = (state) => state.carrinho.produtos;
-const getProductQuantity = (id) => (state) => state.carrinho.produtos
-  .find((p) => p.id === id)?.quantity;
+const getProductQuantity = (id) => (state) => state.carrinho?.produtos
+  ?.find((p) => p.id === id)?.quantity;
 
 export { obterCarrinho, getProductQuantity };
 
