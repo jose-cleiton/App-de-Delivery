@@ -64,6 +64,11 @@ class UsersService {
 
     return { ...payload, token };
   }
+
+  async getSellers() {
+    const sellers = await this.usersRepository.findAll({ where: { role: 'seller' } });
+    return sellers;
+  }
 }
 
 module.exports = { UsersService };

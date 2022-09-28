@@ -7,6 +7,7 @@ class UsersController {
 
     this.signIn = this.signIn.bind(this);
     this.register = this.register.bind(this);
+    this.getSellers = this.getSellers.bind(this);
   }
 
   async signIn(req, res) {
@@ -19,6 +20,12 @@ class UsersController {
     const { name, email, password } = req.body;
     const result = await this.usersService.register(name, email, password);
     return res.status(201).json(result);
+  }
+
+  async getSellers(req, res) {
+    console.log('chegou');
+    const result = await this.usersService.getSellers();
+    return res.json(result);
   }
 }
 
