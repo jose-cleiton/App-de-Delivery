@@ -8,3 +8,4 @@ export { default as ProductsPage } from './Customer/ProductsPage';
 
 export * from './Customer/ProductsPage';
 export * from './Customer/CheckoutPage';
+export * from './Customer/OrdersPage';

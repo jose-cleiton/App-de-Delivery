@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { removeProduct, obterCarrinho, obterValorTotal }
   from '../../store/carrinho/carrinho.slice';
-import store from '../../store';
+import store, { getUser } from '../../store';
 import { fetchLoaderAllSellers } from '../../store/actions';
+import ApiClient from '../../api';
 import '../../styles/CheckoutPage.css';
 
 export async function loaderSellersPage() {
@@ -11,7 +13,44 @@ export async function loaderSellersPage() {
   return payload;
 }
 
+function createObj({ userId, sellerId, cart, deliveryAddress, deliveryNumber }) {
+  const productList = cart.map((item) => {
+    const { id, quantity } = item;
+    return {
+      id,
+      quantity,
+    };
+  });
+
+  const requestObj = {
+    payload: {
+      userId,
+      sellerId,
+      deliveryAddress,
+      deliveryNumber,
+    },
+    productList,
+  };
+
+  return requestObj;
+}
+
+async function postSale(payload) {
+  const api = new ApiClient(store);
+  try {
+    const response = await api.post('/orders', {
+      data: payload,
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    return console.log(error);
+  }
+}
+
 function CheckoutPage() {
+  const navigate = useNavigate();
+  const user = useSelector(getUser);
   const sellers = useLoaderData();
   const dispatch = useDispatch();
   const cart = useSelector(obterCarrinho);
@@ -121,7 +160,7 @@ function CheckoutPage() {
             >
               {sellers.map((e) => (
                 <option
-                  value={ e.name }
+                  value={ e.id }
                   key={ e.id }
                 >
                   {e.name}
@@ -161,6 +200,21 @@ function CheckoutPage() {
             className="checkoutSendButton"
             type="submit"
             data-testid="customer_checkout__button-submit-order"
+            onClick={ async (e) => {
+              e.preventDefault();
+              const sellerId = document.querySelector('select').value;
+              const deliveryAddress = document.querySelector('#adress').value;
+              const deliveryNumber = document.querySelector('#number').value;
+              const payload = createObj({
+                userId: user.id,
+                sellerId: Number(sellerId),
+                cart,
+                deliveryAddress,
+                deliveryNumber,
+              });
+              const response = await postSale(payload);
+              navigate(`/customer/orders/${response.id}`);
+            } }
           >
             FINALIZAR PEDIDO
           </button>

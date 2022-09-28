@@ -10,6 +10,7 @@ import {
 import productsReducer from './products/products.slice';
 import userReducer from './user/user-slice';
 import sellersReducer from './sellers/sellers.slice';
+import ordersReducer from './order/order.slice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     products: productsReducer,
     carrinho: carrinhoReducer,
     sellers: sellersReducer,
+    orders: ordersReducer,
   },
   preloadedState: {
     user: reHydrateUserFromLocalStorage(),

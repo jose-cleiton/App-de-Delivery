@@ -11,6 +11,7 @@ import {
   RegisterPage,
   loaderProductsPage,
   loaderSellersPage,
+  loaderUserOrdersPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -44,6 +45,7 @@ const AppRoutes = createBrowserRouter([
       {
         path: 'orders',
         element: <OrdersPage />,
+        loader: loaderUserOrdersPage,
       },
       {
         path: 'orders/:id',

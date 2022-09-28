@@ -49,6 +49,7 @@ const carrinhoSlice = createSlice({
     removeProduct: (state, { payload }) => {
       state.produtos = state.produtos.filter((item) => item.id !== payload);
     },
+    clearCart: (state) => { state.carrinho.produtos = []; },
   },
 });
 
@@ -66,6 +67,7 @@ export const {
   setIncrementProduct,
   setQuantityProduct,
   removeProduct,
+  clearCart,
 } = carrinhoSlice.actions;
 
 export default carrinhoSlice.reducer;
