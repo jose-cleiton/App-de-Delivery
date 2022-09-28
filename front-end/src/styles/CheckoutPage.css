@@ -64,3 +64,19 @@ th {
   height: 25px;
   padding: 0 20px;
 }
+
+.checkoutTotalDiv {
+  display: flex;
+  justify-content: end;
+  margin-right: 25px;
+  margin-top: 25px;
+}
+
+.checkoutTotal {
+  background-color: #036b52;
+  border-radius: 7px;
+  color: white;
+  font-size: 28px;
+  font-weight: 800;
+  padding: 3px 25px;
+}

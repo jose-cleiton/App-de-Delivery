@@ -100,10 +100,14 @@ function CheckoutPage() {
           ))}
         </tbody>
       </table>
-      <div
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        {Number(total).toFixed(2).replace('.', ',')}
+      <div className="checkoutTotalDiv">
+        <p className="checkoutTotal">Valor Total:</p>
+        <div
+          className="checkoutTotal"
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          {Number(total).toFixed(2).replace('.', ',')}
+        </div>
       </div>
       <h1>Detalhes e Endereço para Entrega</h1>
       <form action="submit" method="post">
