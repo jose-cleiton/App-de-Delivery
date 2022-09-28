@@ -40,7 +40,7 @@ class SalesServices {
             });
         });
 
-        return { id: newSale.id, ...sale, productList };
+        return { id: newSale.id, ...sale, productList, date: newSale.saleDate };
     }
 
     async updateStatus(id, status) {
