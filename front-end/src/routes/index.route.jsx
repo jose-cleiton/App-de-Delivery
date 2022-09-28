@@ -10,6 +10,7 @@ import {
   ProductsPage,
   RegisterPage,
   loaderProductsPage,
+  loaderSellersPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -38,6 +39,7 @@ const AppRoutes = createBrowserRouter([
       {
         path: 'checkout',
         element: <CheckoutPage />,
+        loader: loaderSellersPage,
       },
       {
         path: 'orders',

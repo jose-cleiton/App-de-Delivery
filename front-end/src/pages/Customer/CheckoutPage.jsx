@@ -1,8 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useLoaderData } from 'react-router-dom';
 import { removeProduct, obterCarrinho, obterValorTotal }
   from '../../store/carrinho/carrinho.slice';
+import store from '../../store';
+import { fetchLoaderAllSellers } from '../../store/actions';
+
+export async function loaderSellersPage() {
+  const { payload } = await store.dispatch(fetchLoaderAllSellers());
+  return payload;
+}
 
 function CheckoutPage() {
+  const sellers = useLoaderData();
   const dispatch = useDispatch();
   const cart = useSelector(obterCarrinho);
   const total = useSelector(obterValorTotal);
