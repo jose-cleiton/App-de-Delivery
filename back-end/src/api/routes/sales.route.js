@@ -22,6 +22,7 @@ class SalesRoute {
 
     this.router.patch(`${this.path}/:id`, this.salesController.updateStatus);
     this.router.get(`${this.path}`, this.tokenMdwr.decode, this.salesController.getAllSalesUser);
+    this.router.get(`${this.path}/:id`, this.tokenMdwr.decode, this.salesController.getSaleById);
   }
 }
 

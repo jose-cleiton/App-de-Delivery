@@ -7,3 +7,6 @@ export { default as CheckoutPage } from './Customer/CheckoutPage';
 export { default as ProductsPage } from './Customer/ProductsPage';
 
 export * from './Customer/ProductsPage';
+export * from './Customer/CheckoutPage';
+export * from './Customer/OrdersPage';
+export * from './Customer/OderDetailsPage';

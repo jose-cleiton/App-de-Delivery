@@ -1,0 +1,125 @@
+.checkoutPage h1 {
+  font-size: 20px;
+  margin: 15px 0 15px 35px;
+}
+
+.checkoutPage table {
+  background-color: #fbfffe;
+  box-shadow: 1px 2px 1px 1px #b1c2be;
+  font-size: 19px;
+  margin: 0 auto;
+  max-width: 80vw;
+  text-align: center;
+}
+
+caption {
+  font-size: 20px;
+  margin: 20px 10px;
+  text-align: left;
+}
+
+th {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.checkoutItem {
+  background-color: #2fc18c;
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  color: black;
+  height: 25px;
+  width: 45px;
+}
+
+.checkoutProduct {
+  min-width: 350px;
+  text-align: start;
+}
+
+.checkoutQuantity {
+  background-color: #036b52;
+  color: white;
+  min-width: 90px;
+}
+
+.checkoutUnitPrice {
+  background-color: #421981;
+  color: white;
+  min-width: 90px;
+}
+
+.checkoutSubTotal {
+  background-color: #056cf9;
+  color: white;
+  min-width: 90px;
+}
+
+.checkoutRemoveButton {
+  background-color: #2fc18c;
+  border: none;
+  border-bottom-right-radius: 7px;
+  border-top-right-radius: 7px;
+  color: white;
+  height: 25px;
+  padding: 0 20px;
+}
+
+.checkoutTotalDiv {
+  display: flex;
+  justify-content: end;
+  margin-right: 25px;
+  margin-top: 25px;
+}
+
+.checkoutTotal {
+  background-color: #036b52;
+  border-radius: 7px;
+  color: white;
+  font-size: 28px;
+  font-weight: 800;
+  padding: 3px 25px;
+}
+
+.checkoutPage form {
+  background-color: #fbfffe;
+  margin: 0 65px;
+}
+
+.formInputs {
+  display: flex;
+  padding: 0 50px 30px;
+}
+
+.formInputs label {
+  font-size: 15px;
+}
+
+.formInputs select {
+  height: 25px;
+  min-width: 200px;
+}
+
+.checkoutAdress {
+  margin: 0 25px;
+  width: 100%;
+}
+
+.checkoutNumber {
+  min-width: 200px;
+}
+
+.sendButtonDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.checkoutSendButton {
+  background-color: #036b52;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 19px;
+  font-weight: 600;
+  padding: 13px 45px;
+}

@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
-
-import { getUser, setResetUser } from '../store';
+import { getUser, setResetUser, clearCart } from '../store';
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -44,7 +43,11 @@ function NavBar() {
         <Link
           data-testid="customer_products__element-navbar-link-logout"
           to="/login"
-          onClick={ () => logOut() }
+          onClick={ () => {
+            logOut();
+            localStorage.clear();
+            dispatch(clearCart());
+          } }
           className="Link"
         >
           Sair

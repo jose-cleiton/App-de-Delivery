@@ -9,7 +9,10 @@ import {
   OrdersPage,
   ProductsPage,
   RegisterPage,
+  loaderOderDetails,
   loaderProductsPage,
+  loaderSellersPage,
+  loaderUserOrdersPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -38,14 +41,17 @@ const AppRoutes = createBrowserRouter([
       {
         path: 'checkout',
         element: <CheckoutPage />,
+        loader: loaderSellersPage,
       },
       {
         path: 'orders',
         element: <OrdersPage />,
+        loader: loaderUserOrdersPage,
       },
       {
         path: 'orders/:id',
         element: <OderDetailsPage />,
+        loader: loaderOderDetails,
       },
     ],
   },

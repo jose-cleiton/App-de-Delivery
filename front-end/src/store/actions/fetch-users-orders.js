@@ -3,11 +3,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { handleErrorResponse } from '../../utils';
 import { api } from '..';
 
-const fetchUserLogin = createAsyncThunk(
-  'user/fetchUserLogin',
-  async (payload, { rejectWithValue }) => {
+const fetchLoaderUserOrders = createAsyncThunk(
+  'orders/fetchLoaderUserOrders',
+  async (_payload, { rejectWithValue }) => {
     try {
-      const response = await api.post('/login', { data: payload });
+      const response = await api.get('/orders');
       return response.data;
     } catch (error) {
       return rejectWithValue(handleErrorResponse(error));
@@ -15,4 +15,4 @@ const fetchUserLogin = createAsyncThunk(
   },
 );
 
-export default fetchUserLogin;
+export default fetchLoaderUserOrders;
