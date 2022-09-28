@@ -17,7 +17,7 @@ function CheckoutPage() {
   const total = useSelector(obterValorTotal);
   return (
     <div>
-      <h1>CheckoutPage</h1>
+      <h1>Finalizar Pedido</h1>
       <table>
         <thead>
           <tr>
@@ -101,6 +101,43 @@ function CheckoutPage() {
       >
         { Number(total).toFixed(2).replace('.', ',')}
       </div>
+      <h1>Detalhes e Endereço para Entrega</h1>
+      <form action="submit" method="post">
+        <label htmlFor="seller">
+          P. Vendedora Responsável
+          <select
+            name="seller"
+            id="seller"
+            data-testid="customer_checkout__select-seller"
+          >
+            {sellers.map((e) => <option value={ e.name } key={ e.id }>{e.name}</option>)}
+          </select>
+        </label>
+        <label htmlFor="adress">
+          Endereço
+          <input
+            type="text"
+            name="adress"
+            id="adress"
+            data-testid="customer_checkout__input-address"
+          />
+        </label>
+        <label htmlFor="number">
+          Número
+          <input
+            type="text"
+            name="number"
+            id="number"
+            data-testid="customer_checkout__input-address-number"
+          />
+        </label>
+        <button
+          type="submit"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          Finalizar Pedido
+        </button>
+      </form>
     </div>
   );
 }
