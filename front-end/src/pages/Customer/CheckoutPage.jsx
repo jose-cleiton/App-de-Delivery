@@ -111,40 +111,61 @@ function CheckoutPage() {
       </div>
       <h1>Detalhes e Endereço para Entrega</h1>
       <form action="submit" method="post">
-        <label htmlFor="seller">
-          P. Vendedora Responsável
-          <select
-            name="seller"
-            id="seller"
-            data-testid="customer_checkout__select-seller"
+        <div className="formInputs">
+          <label htmlFor="seller">
+            P. Vendedora Responsável
+            <select
+              name="seller"
+              id="seller"
+              data-testid="customer_checkout__select-seller"
+            >
+              {sellers.map((e) => (
+                <option
+                  value={ e.name }
+                  key={ e.id }
+                >
+                  {e.name}
+                </option>))}
+            </select>
+          </label>
+          <label
+            htmlFor="adress"
+            className="checkoutAdress"
           >
-            {sellers.map((e) => <option value={ e.name } key={ e.id }>{e.name}</option>)}
-          </select>
-        </label>
-        <label htmlFor="adress">
-          Endereço
-          <input
-            type="text"
-            name="adress"
-            id="adress"
-            data-testid="customer_checkout__input-address"
-          />
-        </label>
-        <label htmlFor="number">
-          Número
-          <input
-            type="text"
-            name="number"
-            id="number"
-            data-testid="customer_checkout__input-address-number"
-          />
-        </label>
-        <button
-          type="submit"
-          data-testid="customer_checkout__button-submit-order"
-        >
-          Finalizar Pedido
-        </button>
+            Endereço
+            <input
+              type="text"
+              name="adress"
+              id="adress"
+              placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
+              data-testid="customer_checkout__input-address"
+            />
+          </label>
+          <label
+            htmlFor="number"
+            className="checkoutNumber"
+          >
+            Número
+            <input
+              type="text"
+              name="number"
+              id="number"
+              placeholder="198"
+              data-testid="customer_checkout__input-address-number"
+            />
+          </label>
+
+        </div>
+        <div className="sendButtonDiv">
+          <button
+            className="checkoutSendButton"
+            type="submit"
+            data-testid="customer_checkout__button-submit-order"
+          >
+            FINALIZAR PEDIDO
+          </button>
+
+        </div>
       </form>
     </div>
   );
