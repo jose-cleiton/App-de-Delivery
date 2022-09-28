@@ -1,4 +1,5 @@
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData } from 'react-router-dom';
+
 import store from '../../store';
 import { fetchLoaderUserOrders } from '../../store/actions';
 
@@ -8,7 +9,7 @@ export async function loaderUserOrdersPage() {
 }
 
 function OrdersPage() {
-  const Order = useLoaderData();
+  // const Order = useLoaderData();
   return (
     <div>
       <h1>OrdersPage</h1>

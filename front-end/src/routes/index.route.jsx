@@ -9,6 +9,7 @@ import {
   OrdersPage,
   ProductsPage,
   RegisterPage,
+  loaderOderDetails,
   loaderProductsPage,
   loaderSellersPage,
   loaderUserOrdersPage,
@@ -50,6 +51,7 @@ const AppRoutes = createBrowserRouter([
       {
         path: 'orders/:id',
         element: <OderDetailsPage />,
+        loader: loaderOderDetails,
       },
     ],
   },
