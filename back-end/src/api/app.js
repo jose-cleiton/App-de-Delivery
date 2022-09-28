@@ -9,7 +9,7 @@ const {
 
 const { UsersRoute } = require('./routes/users.route');
 const { ProductsRoute } = require('./routes/products.route');
-const { SalesRoute } = require('./routes/sales-router');
+const { SalesRoute } = require('./routes/sales.route');
 
 class App {
   constructor() {
