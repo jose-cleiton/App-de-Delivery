@@ -18,18 +18,43 @@ function OrderStatus(order) {
     >
       <div className="numeroPedido">
         <p>Pedido</p>
-        <span>{id}</span>
+        <span
+          data-testid={ `customer_orders__element-order-id-${id}` }
+        >
+          {id}
+
+        </span>
       </div>
       <div className="rightPedidos">
         <div className="upperPedido">
-          <p className="statusPedidoNome">{status}</p>
+          <p
+            className="statusPedidoNome"
+            data-testid={ `customer_orders__element-delivery-status-${id}` }
+          >
+            {status}
+
+          </p>
           <div className="pedidoLateral">
-            <span className="dataPedido">{moment(data).format('DD/MM/YYYY')}</span>
-            <span className="precoPedido">{totalPrice}</span>
+            <span
+              className="dataPedido"
+              data-testid={ `customer_orders__element-order-date-${id}` }
+            >
+              {moment(data).format('DD/MM/YYYY')}
+
+            </span>
+            <span
+              className="precoPedido"
+              data-testid={ `customer_orders__element-card-price-${id}` }
+            >
+              {totalPrice.replace('.', ',')}
+
+            </span>
           </div>
         </div>
         <div className="downPedido">
-          <div>
+          <div
+            data-testid={ `seller_orders__element-card-address-${id}` }
+          >
             {`${deliveryAddress}, ${deliveryNumber}`}
           </div>
 

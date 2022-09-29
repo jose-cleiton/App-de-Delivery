@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { getOrderDetails } from '../store/order/order.slice';
+import { getSellers } from '../store/sellers/sellers.slice';
 import '../styles/OrderDetailsStatus.css';
 
 function OrderDetailsStatus() {
@@ -9,7 +10,10 @@ function OrderDetailsStatus() {
     id,
     saleDate,
     status,
+    sellerId,
   } = useSelector(getOrderDetails);
+  const sellers = useSelector(getSellers);
+  console.log(sellers);
   const data = new Date(saleDate);
 
   return (
@@ -26,7 +30,7 @@ function OrderDetailsStatus() {
         className="orderDetailsSeller"
       >
         P.Vend:
-        {/* {sellerName} */}
+        { sellers.find((item) => item.id === sellerId).name}
       </span>
 
       <span
@@ -41,12 +45,13 @@ function OrderDetailsStatus() {
         className="orderDetailsStatus"
       >
         <div>
-          {status.toUpperCase() }
+          {status}
         </div>
       </span>
       <button
         data-testid="customer_order_details__button-delivery-check"
         className="orderDetaisButton"
+        disabled
         // disabled={  }
         // onClick={  }
         type="button"

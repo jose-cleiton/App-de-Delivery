@@ -50,13 +50,13 @@ function OrderDetailsTable() {
                 className="checkoutUnitPrice"
                 data-testid={ makeTestId('unit-price', index) }
               >
-                {price}
+                {price.replace('.', ',')}
               </td>
               <td
                 className="checkoutSubTotal"
                 data-testid={ makeTestId('sub-total', index) }
               >
-                {((price * quantity).toFixed(2))}
+                {((price * quantity).toFixed(2)).replace('.', ',')}
               </td>
             </tr>
           ))

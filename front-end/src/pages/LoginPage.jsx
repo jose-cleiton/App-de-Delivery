@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import RockGlassImage from '../images/rockGlass.svg';
-import { getErrorOnLogin, setResetUser } from '../store';
+import { getErrorOnLogin, getUser } from '../store';
 import { fetchUserLogin } from '../store/actions';
 
 function LoginPage() {
   const dispatch = useDispatch();
   const error = useSelector(getErrorOnLogin);
   const navigate = useNavigate();
+  const user = useSelector(getUser);
   const { handleSubmit, register, formState } = useForm({
     context: 'login',
     mode: 'onChange',
@@ -23,11 +24,11 @@ function LoginPage() {
     dispatch(fetchUserLogin({ ...data, navigate }));
   };
 
-  const resetUser = () => {
+  /* const resetUser = () => {
     dispatch(setResetUser());
-  };
+  }; */
 
-  useEffect(resetUser, []);
+  user.token && useEffect(() => navigate('/customer/products'), [user.token]);
 
   return (
     <section className="login">
