@@ -113,15 +113,15 @@ function CheckoutPage() {
                   `customer_checkout__element-order-table-unit-price-${index}`
                 }
               >
-                {Number(data.price).toFixed(2)}
+                {Number(data.price).toFixed(2).replace('.', ',')}
               </td>
               <td
                 className="checkoutSubTotal"
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-${index + 1}`
+                  `customer_checkout__element-order-table-sub-total-${index}`
                 }
               >
-                {Number(data.price * data.quantity).toFixed(2)}
+                {Number(data.price * data.quantity).toFixed(2).replace('.', ',')}
               </td>
               <button
                 className="checkoutRemoveButton"
