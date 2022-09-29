@@ -61,7 +61,7 @@ function CheckoutPage() {
         <caption>Finalizar Pedido</caption>
         <thead>
           <tr>
-            <th className="testando">
+            <th>
               Item
             </th>
             <th>
