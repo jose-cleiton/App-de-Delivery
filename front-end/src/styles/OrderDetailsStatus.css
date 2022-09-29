@@ -1,0 +1,39 @@
+.orderDetailStatusHeader {
+  align-items: center;
+  background-color: #eaf1ef;
+  display: flex;
+  height: 45px;
+  padding: 3px 15px;
+}
+
+.nPedido {
+  font-weight: 800;
+  margin-right: 20px;
+  width: 100px;
+}
+
+.orderDetailsSeller {
+  margin-right: 20px;
+  width: 50%;
+}
+
+.orderDetailDate {
+  font-weight: 800;
+  margin-right: 20px;
+}
+
+.orderDetailsStatus {
+  background-color: #00cc9b;
+  border-radius: 5px;
+  font-weight: 800;
+  margin-right: 20px;
+  padding: 5px 10px;
+}
+
+.orderDetaisButton {
+  background-color: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 7px 15px;
+}

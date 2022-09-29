@@ -1,0 +1,71 @@
+.pedido {
+  align-items: center;
+  background-color: #eaf1ef;
+  border: none;
+  box-shadow: 2px 2px 2px 1px #b1c2be;
+  display: flex;
+  height: 90px;
+  margin: 20px 30px;
+}
+
+.numeroPedido {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 90px;
+}
+
+.rightPedidos {
+  display: flex;
+  flex-direction: column;
+}
+
+.upperPedido {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  margin-top: -5px;
+}
+
+.downPedido {
+  padding-right: 15px;
+  text-align: end;
+}
+
+.statusPedidoNome {
+  align-items: center;
+  background-color: #ccb800;
+  border-radius: 7px;
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
+  margin: 0 10px;
+  min-width: 100px;
+}
+
+.pedidoLateral {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataPedido {
+  background-color: #f2fffc;
+  border-radius: 5px;
+  font-weight: 800;
+  margin: 0 10px;
+  padding: 5px 15px;
+}
+
+.precoPedido {
+  background-color: #f2fffc;
+  border-radius: 5px;
+  font-weight: 800;
+  margin: 5px 10px;
+  padding: 5px 15px;
+}
+
+.precoPedido:before {
+  content: 'R$ ';
+}

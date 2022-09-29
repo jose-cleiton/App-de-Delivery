@@ -1,0 +1,7 @@
+.detailsTable {
+  box-shadow: 1px 1px 1px 1px #eaf1ef;
+  justify-content: space-evenly;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}

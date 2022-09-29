@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import '../styles/OrderDetailsTable.css';
 
 function OrderDetailsTable() {
   const makeTestId = (element, index) => {
@@ -10,9 +11,7 @@ function OrderDetailsTable() {
   const { salesProducts } = useLoaderData();
 
   return (
-    <table>
-      <caption>Detalhes pedido</caption>
-
+    <table className="detailsTable">
       <thead>
         <tr>
           <th>Item</th>
@@ -30,29 +29,34 @@ function OrderDetailsTable() {
           }, index) => (
             <tr key={ index }>
               <td
+                className="checkoutItem"
                 data-testid={ makeTestId('item-number', index) }
               >
                 {id}
               </td>
               <td
+                className="checkoutProduct"
                 data-testid={ makeTestId('name', index) }
               >
                 {name}
               </td>
               <td
+                className="checkoutQuantity"
                 data-testid={ makeTestId('quantity', index) }
               >
                 {quantity}
               </td>
               <td
+                className="checkoutUnitPrice"
                 data-testid={ makeTestId('unit-price', index) }
               >
                 {price}
               </td>
               <td
+                className="checkoutSubTotal"
                 data-testid={ makeTestId('sub-total', index) }
               >
-                {(price * quantity).toFixed(2)}
+                {((price * quantity).toFixed(2))}
               </td>
             </tr>
           ))
