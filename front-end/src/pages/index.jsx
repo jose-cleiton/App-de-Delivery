@@ -5,7 +5,7 @@ export { default as OrdersPage } from './Customer/OrdersPage';
 export { default as OderDetailsPage } from './Customer/OderDetailsPage';
 export { default as CheckoutPage } from './Customer/CheckoutPage';
 export { default as ProductsPage } from './Customer/ProductsPage';
-
+export { default as SellerOrders } from './Seller/SellerOrders';
 export * from './Customer/ProductsPage';
 export * from './Customer/CheckoutPage';
 export * from './Customer/OrdersPage';

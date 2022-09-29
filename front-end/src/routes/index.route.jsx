@@ -13,6 +13,7 @@ import {
   loaderProductsPage,
   loaderSellersPage,
   loaderUserOrdersPage,
+  SellerOrders,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -56,8 +57,8 @@ const AppRoutes = createBrowserRouter([
     ],
   },
   {
-    path: 'seller',
-    element: <div>Seller</div>,
+    path: 'seller/orders',
+    element: <SellerOrders />,
   },
   {
     path: 'admin/manage',

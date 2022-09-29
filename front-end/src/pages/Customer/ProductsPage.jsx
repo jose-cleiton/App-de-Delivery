@@ -1,8 +1,8 @@
-import { useLoaderData } from 'react-router-dom';
-
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Cart from '../../components/Cart';
 import ProductList from '../../components/ProductList';
-import store from '../../store';
+import store, { getUser } from '../../store';
 import { fetchLoaderAllProducts } from '../../store/actions';
 
 export async function loaderProductsPage() {
@@ -11,8 +11,10 @@ export async function loaderProductsPage() {
 }
 
 function ProductsPage() {
-  const products = useLoaderData();
-
+  const products = useLoaderData() || [];
+  const navigate = useNavigate();
+  const user = useSelector(getUser);
+  if (user.role === 'seller') navigate('/seller/order');
   return (
     <div>
       <ProductList products={ products } />
