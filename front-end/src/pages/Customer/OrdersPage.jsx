@@ -11,12 +11,12 @@ export async function loaderUserOrdersPage() {
 }
 
 function OrdersPage() {
-  const Order = useLoaderData();
-  if (Order) {
+  const orders = useLoaderData();
+  if (orders) {
     return (
       <div>
         <div className="pedidosDiv">
-          {Order.map((order) => OrderStatus(order))}
+          {orders.map((order) => OrderStatus(order))}
         </div>
       </div>
     );
