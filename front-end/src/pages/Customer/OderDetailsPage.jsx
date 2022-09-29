@@ -22,8 +22,7 @@ function OrderDetailsPage() {
         className="cartButton"
         data-testid="customer_order_details__element-order-total-price"
       >
-        Total: R$:
-        {Number(totalOrderPrice).toFixed(2)}
+        {Number(totalOrderPrice).toFixed(2).replace('.', ',')}
       </span>
     </div>
   );
