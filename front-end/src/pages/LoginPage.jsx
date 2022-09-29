@@ -3,7 +3,7 @@ import '../styles/LoginPage.css';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 import RockGlassImage from '../images/rockGlass.svg';
 import { getErrorOnLogin, getUser } from '../store';
@@ -28,8 +28,9 @@ function LoginPage() {
     dispatch(setResetUser());
   }; */
 
-  user.token && useEffect(() => navigate('/customer/products'), [user.token]);
+  /* user.token &&  useEffect(() => navigate('/customer/products'), [user.token, navigate]); */
 
+  if (user.token) return <Navigate replace to="/customer/products" />;
   return (
     <section className="login">
       <div>
