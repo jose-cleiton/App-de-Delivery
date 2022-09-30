@@ -11,6 +11,7 @@ class SalesController {
     this.updateStatus = this.updateStatus.bind(this);
     this.getAllSalesUser = this.getAllSalesUser.bind(this);
     this.getSaleById = this.getSaleById.bind(this);
+    this.getSaleBySeller = this.getSaleBySeller.bind(this);
   }
 
   async createSale(req, res) {
@@ -36,6 +37,13 @@ class SalesController {
   async getSaleById(req, res) {
     const { id } = req.params;
     const result = await this.salesService.getSaleById(id);
+
+    return res.status(StatusCode.OK).json(result);
+
+  }
+  async getSaleBySeller(req, res) {
+    const { userId } = req.body;
+    const result = await this.salesService.getSaleBySeller(userId.id)
 
     return res.status(StatusCode.OK).json(result);
   }

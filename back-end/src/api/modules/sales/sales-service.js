@@ -72,6 +72,17 @@ class SalesServices {
 
     return sale;
   }
+
+  async getSaleBySeller(id) {
+    const sales = await this.sale.findAll({
+      where: { sellerId: id },
+      include: [{ model: ProductModel, as: 'salesProducts' }]
+    })
+    if (!sales) throw new HttpException(404, 'Sales Not Found');
+
+    return sales;
+
+  }
 }
 
 module.exports = { SalesServices };
