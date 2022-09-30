@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Cart from '../../components/Cart';
 import ProductList from '../../components/ProductList';
@@ -12,9 +12,8 @@ export async function loaderProductsPage() {
 
 function ProductsPage() {
   const products = useLoaderData() || [];
-  const navigate = useNavigate();
   const user = useSelector(getUser);
-  if (user.role === 'seller') navigate('/seller/order');
+  if (user.role === 'seller') return <Navigate replace to="/seller/orders" />;
   return (
     <div>
       <ProductList products={ products } />

@@ -11,6 +11,7 @@ import productsReducer from './products/products.slice';
 import userReducer from './user/user-slice';
 import sellersReducer from './sellers/sellers.slice';
 import ordersReducer from './order/order.slice';
+import sellerSalesReducer from './sellerSales/sellerSales.slice';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     carrinho: carrinhoReducer,
     sellers: sellersReducer,
     orders: ordersReducer,
+    sellerSales: sellerSalesReducer,
   },
   preloadedState: {
     user: reHydrateUserFromLocalStorage(),
@@ -32,5 +34,6 @@ const store = configureStore({
 
 export * from './user/user-slice';
 export * from './carrinho/carrinho.slice';
+export * from './sellerSales/sellerSales.slice';
 export const api = new ApiClient(store);
 export default store;
