@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { getOrderDetails } from '../store/order/order.slice';
 import { getSellers } from '../store/sellers/sellers.slice';
+import { api } from '../store';
 import '../styles/OrderDetailsStatus.css';
 
 function OrderDetailsStatus() {
@@ -15,6 +16,11 @@ function OrderDetailsStatus() {
   const sellers = useSelector(getSellers);
   console.log(sellers);
   const data = new Date(saleDate);
+  const handleClick = async (e) => {
+    const { value } = e.target;
+    console.log(value);
+    await api.patch(`/orders/${id}?status=${value}`);
+  };
 
   return (
     <div className="orderDetailStatusHeader">
@@ -30,7 +36,7 @@ function OrderDetailsStatus() {
         className="orderDetailsSeller"
       >
         P.Vend:
-        { sellers.find((item) => item.id === sellerId).name}
+        { /* sellers.find((item) => item.id === sellerId).name */}
       </span>
 
       <span
@@ -51,9 +57,8 @@ function OrderDetailsStatus() {
       <button
         data-testid="customer_order_details__button-delivery-check"
         className="orderDetaisButton"
-        disabled
-        // disabled={  }
-        // onClick={  }
+        value="Entregue"
+        onClick={ (e) => handleClick(e) }
         type="button"
       >
         MARCAR COMO ENTREGUE

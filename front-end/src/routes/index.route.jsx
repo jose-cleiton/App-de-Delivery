@@ -15,6 +15,7 @@ import {
   loaderUserOrdersPage,
   SellerOrders,
 } from '../pages';
+import SellerOrderDetails from '../pages/Seller/SellerOrderDetails';
 import { loaderSalesBySeller } from '../pages/Seller/SellerOrders';
 
 const AppRoutes = createBrowserRouter([
@@ -60,6 +61,11 @@ const AppRoutes = createBrowserRouter([
   {
     path: 'seller/orders',
     element: <SellerOrders />,
+    loader: loaderSalesBySeller,
+  },
+  {
+    path: 'seller/orders/:id',
+    element: <SellerOrderDetails />,
     loader: loaderSalesBySeller,
   },
   {

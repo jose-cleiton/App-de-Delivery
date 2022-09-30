@@ -49,7 +49,7 @@ class SalesServices {
       { where: { id: Number(id) } },
     );
 
-    if (newStatus === 0) throw new HttpException(400, 'Bad Request');
+    if (newStatus === 0) throw new HttpException(400, newStatus);
 
     return newStatus;
   }
