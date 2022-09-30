@@ -1,8 +1,7 @@
-import moment from 'moment-timezone';
+import moment from 'moment';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getUser, api } from '../store';
-import { useEffect } from 'react';
+import { api, getUser } from '../store';
 
 function OrderDetailsStatusSeller({ sales }) {
   const {
@@ -18,7 +17,6 @@ function OrderDetailsStatusSeller({ sales }) {
   const seller = useSelector(getUser);
   console.log(seller);
   const data = new Date(saleDate);
-  useEffect(() => {}, [status]);
 
   return (
     <div className="orderDetailStatusHeader">
@@ -74,5 +72,14 @@ function OrderDetailsStatusSeller({ sales }) {
     </div>
   );
 }
+
+OrderDetailsStatusSeller.propTypes = {
+  sales: PropTypes.shape({
+    id: PropTypes.number,
+    saleDate: PropTypes.string,
+    status: PropTypes.string,
+
+  }).isRequired,
+};
 
 export default OrderDetailsStatusSeller;

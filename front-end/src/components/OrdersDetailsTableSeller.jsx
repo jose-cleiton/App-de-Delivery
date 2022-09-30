@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/OrderDetailsTable.css';
+import PropTypes from 'prop-types';
 
 function OrderDetailsTableSeller({ sale }) {
   const makeTestId = (element, index) => {
@@ -65,5 +66,18 @@ function OrderDetailsTableSeller({ sale }) {
 
   );
 }
+
+OrderDetailsTableSeller.propTypes = {
+  sale: PropTypes.shape({
+    salesProducts: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.string,
+      sales_products: PropTypes.shape({
+        quantity: PropTypes.number,
+      }),
+    })),
+  }).isRequired,
+};
 
 export default OrderDetailsTableSeller;
