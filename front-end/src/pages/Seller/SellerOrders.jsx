@@ -10,7 +10,7 @@ export async function loaderSalesBySeller() {
 }
 
 function SellerOrders() {
-  const salesSeller = useLoaderData();
+  const salesSeller = useLoaderData() || [];
   console.log(salesSeller);
   return (
     <div>

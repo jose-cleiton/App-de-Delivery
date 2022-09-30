@@ -11,7 +11,7 @@ function OrderDetailsStatus() {
     id,
     saleDate,
     status,
-    sellerId,
+
   } = useSelector(getOrderDetails);
   const sellers = useSelector(getSellers);
   console.log(sellers);
