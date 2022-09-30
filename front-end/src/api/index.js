@@ -35,6 +35,10 @@ class ApiClient {
   delete(url) {
     return this.api.delete(url);
   }
+
+  patch(url) {
+    return this.api.patch(url);
+  }
 }
 
 export default ApiClient;
