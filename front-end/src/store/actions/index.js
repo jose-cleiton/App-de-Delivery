@@ -4,3 +4,4 @@ export { default as fetchLoaderAllProducts } from './fetch-loader-all-products.a
 export { default as fetchLoaderAllSellers } from './fetch-loader-all-sellers.action';
 export { default as fetchLoaderUserOrders } from './fetch-users-orders';
 export { default as fetchLoaderOrderDetails } from './fetch-loader-order-details.action';
+export { default as fetchLoaderSalesBySeller } from './fetch-loader-sales-by-seller';

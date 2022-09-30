@@ -39,11 +39,11 @@ class SalesController {
     const result = await this.salesService.getSaleById(id);
 
     return res.status(StatusCode.OK).json(result);
-
   }
+
   async getSaleBySeller(req, res) {
     const { userId } = req.body;
-    const result = await this.salesService.getSaleBySeller(userId.id)
+    const result = await this.salesService.getSaleBySeller(userId.id);
 
     return res.status(StatusCode.OK).json(result);
   }

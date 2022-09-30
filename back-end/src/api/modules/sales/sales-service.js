@@ -76,12 +76,11 @@ class SalesServices {
   async getSaleBySeller(id) {
     const sales = await this.sale.findAll({
       where: { sellerId: id },
-      include: [{ model: ProductModel, as: 'salesProducts' }]
-    })
+      include: [{ model: ProductModel, as: 'salesProducts' }],
+    });
     if (!sales) throw new HttpException(404, 'Sales Not Found');
 
     return sales;
-
   }
 }
 
