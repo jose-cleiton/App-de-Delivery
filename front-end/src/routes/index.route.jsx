@@ -14,9 +14,9 @@ import {
   loaderSellersPage,
   loaderUserOrdersPage,
   SellerOrders,
+  loaderSalesBySeller,
+  SellerOrderDetails,
 } from '../pages';
-import SellerOrderDetails from '../pages/Seller/SellerOrderDetails';
-import { loaderSalesBySeller } from '../pages/Seller/SellerOrders';
 
 const AppRoutes = createBrowserRouter([
   {

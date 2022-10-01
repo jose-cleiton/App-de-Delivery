@@ -8,6 +8,7 @@ const fetchLoaderSalesBySeller = createAsyncThunk(
   async (_payload, { rejectWithValue }) => {
     try {
       const response = await api.get('/orders/salesBySellerId');
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(handleErrorResponse(error));

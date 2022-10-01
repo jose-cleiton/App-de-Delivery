@@ -1,21 +1,17 @@
 import moment from 'moment';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { api, getUser } from '../store';
+import { useParams } from 'react-router';
+import { api, getUser, getSellerSales } from '../store';
 
-function OrderDetailsStatusSeller({ sales }) {
-  const {
-    id,
-    saleDate,
-    status,
-  } = sales;
+function OrderDetailsStatusSeller() {
+  const { id } = useParams();
+  const sales = useSelector(getSellerSales);
+  const { status, saleDate } = sales.find((item) => item.id === Number(id));
   const handleClick = async (e) => {
     const { value } = e.target;
-    console.log(value);
     await api.patch(`/orders/${id}?status=${value}`);
   };
   const seller = useSelector(getUser);
-  console.log(seller);
   const data = new Date(saleDate);
 
   return (
@@ -72,14 +68,5 @@ function OrderDetailsStatusSeller({ sales }) {
     </div>
   );
 }
-
-OrderDetailsStatusSeller.propTypes = {
-  sales: PropTypes.shape({
-    id: PropTypes.number,
-    saleDate: PropTypes.string,
-    status: PropTypes.string,
-
-  }).isRequired,
-};
 
 export default OrderDetailsStatusSeller;
