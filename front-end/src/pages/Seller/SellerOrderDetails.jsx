@@ -16,7 +16,7 @@ function SellerOrderDetails() {
     <div>
       <div>Order Details Page Seller</div>
       <OrderDetailsStatusSeller />
-      <OrderDetailsTableSeller sale={ sale } />
+      <OrderDetailsTableSeller />
       <span
         className="cartButton"
         data-testid="seller_order_details__element-order-total-price"
