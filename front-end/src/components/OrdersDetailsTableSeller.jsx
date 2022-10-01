@@ -1,14 +1,18 @@
 import React from 'react';
 import '../styles/OrderDetailsTable.css';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { getSellerSales } from '../store';
 
-function OrderDetailsTableSeller({ sale }) {
+function OrderDetailsTableSeller() {
+  const params = useParams();
   const makeTestId = (element, index) => {
     const id = `seller_order_details__element-order-table-${element}-${index}`;
     return id;
   };
+  const sales = useSelector(getSellerSales);
 
-  const { salesProducts } = sale;
+  const { salesProducts } = sales.find((item) => item.id === Number(params.id));
 
   return (
     <table className="detailsTable">
@@ -66,18 +70,5 @@ function OrderDetailsTableSeller({ sale }) {
 
   );
 }
-
-OrderDetailsTableSeller.propTypes = {
-  sale: PropTypes.shape({
-    salesProducts: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      price: PropTypes.string,
-      sales_products: PropTypes.shape({
-        quantity: PropTypes.number,
-      }),
-    })),
-  }).isRequired,
-};
 
 export default OrderDetailsTableSeller;

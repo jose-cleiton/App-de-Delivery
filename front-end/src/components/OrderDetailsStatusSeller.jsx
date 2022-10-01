@@ -1,21 +1,20 @@
 import moment from 'moment';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import { api, getUser } from '../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { api, getUser, getSellerSales } from '../store';
+import { updateStatus } from '../store/order/order.slice';
 
-function OrderDetailsStatusSeller({ sales }) {
-  const {
-    id,
-    saleDate,
-    status,
-  } = sales;
+function OrderDetailsStatusSeller() {
+  const { id } = useParams();
+  const sales = useSelector(getSellerSales);
+  const dispatch = useDispatch();
+
+  const { status, saleDate } = sales.find((item) => item.id === Number(id));
   const handleClick = async (e) => {
     const { value } = e.target;
-    console.log(value);
     await api.patch(`/orders/${id}?status=${value}`);
   };
   const seller = useSelector(getUser);
-  console.log(seller);
   const data = new Date(saleDate);
 
   return (
@@ -54,7 +53,11 @@ function OrderDetailsStatusSeller({ sales }) {
         data-testid="seller_order_details__button-preparing-check"
         className="orderDetaisButton"
         value="Preparando"
-        onClick={ (e) => handleClick(e) }
+        onClick={ async (e) => {
+          await handleClick(e);
+          const { value } = e.target;
+          dispatch(updateStatus(value));
+        } }
         type="button"
       >
         PREPARAR PEDIDO
@@ -64,7 +67,10 @@ function OrderDetailsStatusSeller({ sales }) {
         className="orderDetaisButton"
         value="Em Trânsito"
         // disabled={  }
-        onClick={ (e) => handleClick(e) }
+        onClick={ async (e) => {
+          await handleClick(e);
+          dispatch(updateStatus(e.target.value));
+        } }
         type="button"
       >
         SAIU PARA ENTREGA
@@ -72,14 +78,5 @@ function OrderDetailsStatusSeller({ sales }) {
     </div>
   );
 }
-
-OrderDetailsStatusSeller.propTypes = {
-  sales: PropTypes.shape({
-    id: PropTypes.number,
-    saleDate: PropTypes.string,
-    status: PropTypes.string,
-
-  }).isRequired,
-};
 
 export default OrderDetailsStatusSeller;

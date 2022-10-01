@@ -1,5 +1,7 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+// import { useLoaderData, } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getOrderDetails } from '../store/order/order.slice';
 import '../styles/OrderDetailsTable.css';
 
 function OrderDetailsTable() {
@@ -8,8 +10,7 @@ function OrderDetailsTable() {
     return id;
   };
 
-  const { salesProducts } = useLoaderData();
-
+  const { salesProducts } = useSelector(getOrderDetails);
   return (
     <table className="detailsTable">
       <thead>

@@ -5,7 +5,7 @@ const initialState = {
   error: null,
   loading: false,
 };
-
+// sellers/fetchLoaderAllSellers
 const sellersSlice = createSlice({
   name: 'sellers',
   initialState,

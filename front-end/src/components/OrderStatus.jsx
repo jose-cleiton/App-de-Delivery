@@ -7,10 +7,10 @@ function OrderStatus(order) {
   const { id, status, totalPrice, saleDate, deliveryAddress, deliveryNumber } = order;
   const data = new Date(saleDate);
   const navigate = useNavigate();
-
   return (
     <button
       className="pedido"
+      key={ id }
       type="button"
       onClick={ () => {
         navigate(`/customer/orders/${id}`);

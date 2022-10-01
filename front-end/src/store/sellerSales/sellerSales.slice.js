@@ -11,13 +11,13 @@ const sellerSalesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase('sellerSales/fetchLoaderSalesBySeller/pending', (state) => {
+    builder.addCase('seller/fetchLoaderSalesBySeller/pending', (state) => {
       state.loading = true;
-    }).addCase('sellerSales/fetchLoaderSalesBySeller/fulfilled', (state, action) => {
+    }).addCase('seller/fetchLoaderSalesBySeller/fulfilled', (state, action) => {
       state.sellerSales = action.payload;
       state.loading = false;
       state.error = null;
-    }).addCase('sellerSales/fetchLoaderSalesBySeller/rejected', (state, action) => {
+    }).addCase('seller/fetchLoaderSalesBySeller/rejected', (state, action) => {
       state.error = action.payload;
       state.loading = false;
     });

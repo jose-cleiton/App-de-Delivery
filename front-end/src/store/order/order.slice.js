@@ -10,7 +10,11 @@ const initialState = {
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
-  reducers: {},
+  reducers: {
+    updateStatus: (state, { payload }) => {
+      state.details.status = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase('orders/fetchLoaderUserOrders/pending', (state) => {
       state.loading = true;
@@ -45,6 +49,7 @@ export { obterOrder, getOrderDetails, getTotalPriceOrderDetails };
 
 export const {
   createOrder,
+  updateStatus,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;
