@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { getOrderDetails } from '../store/order/order.slice';
+import { getOrderDetails, updateStatus } from '../store/order/order.slice';
 import { getSellers } from '../store/sellers/sellers.slice';
 import { api } from '../store';
 import '../styles/OrderDetailsStatus.css';
@@ -11,14 +11,14 @@ function OrderDetailsStatus() {
     id,
     saleDate,
     status,
-
+    sellerId,
   } = useSelector(getOrderDetails);
   const sellers = useSelector(getSellers);
-  console.log(sellers);
   const data = new Date(saleDate);
+  const dispatch = useDispatch();
+
   const handleClick = async (e) => {
     const { value } = e.target;
-    console.log(value);
     await api.patch(`/orders/${id}?status=${value}`);
   };
 
@@ -36,7 +36,7 @@ function OrderDetailsStatus() {
         className="orderDetailsSeller"
       >
         P.Vend:
-        { /* sellers.find((item) => item.id === sellerId).name */}
+        { sellers.find((item) => item.id === sellerId).name }
       </span>
 
       <span
@@ -58,7 +58,11 @@ function OrderDetailsStatus() {
         data-testid="customer_order_details__button-delivery-check"
         className="orderDetaisButton"
         value="Entregue"
-        onClick={ (e) => handleClick(e) }
+        onClick={ (e) => {
+          handleClick(e);
+          const { value } = e.target;
+          dispatch(updateStatus(value));
+        } }
         type="button"
       >
         MARCAR COMO ENTREGUE
