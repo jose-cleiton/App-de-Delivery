@@ -14,6 +14,7 @@ function ProductsPage() {
   const products = useLoaderData() || [];
   const user = useSelector(getUser);
   if (user.role === 'seller') return <Navigate replace to="/seller/orders" />;
+  if (user.role === 'administrator') return <Navigate replace to="/admin/manage" />;
   return (
     <div>
       <ProductList products={ products } />

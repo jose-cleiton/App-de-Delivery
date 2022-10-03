@@ -5,3 +5,5 @@ export { default as fetchLoaderAllSellers } from './fetch-loader-all-sellers.act
 export { default as fetchLoaderUserOrders } from './fetch-users-orders';
 export { default as fetchLoaderOrderDetails } from './fetch-loader-order-details.action';
 export { default as fetchLoaderSalesBySeller } from './fetch-loader-sales-by-seller';
+export { default as fetchUsers } from './fetch-get-users.action';
+export { default as fetchCreateUserAdmin } from './fetch-create-user.action';
