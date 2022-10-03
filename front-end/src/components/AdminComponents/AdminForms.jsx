@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+
 import { fetchCreateUserAdmin } from '../../store/actions';
 import { getError } from '../../store/user/admin-newUser.slice';
+import loaderUsersPage from '../../helpers/loaderUsers';
 import store from '../../store';
 
 async function fetchPostUser(name, email, password, role) {
@@ -25,7 +27,7 @@ export default function AdminForms() {
           { error
           && (
             <p
-              data-testid="common_login__element-invalid-email"
+              data-testid="admin_manage__element-invalid-register"
             >
               { error.message }
 
@@ -37,6 +39,7 @@ export default function AdminForms() {
           Nome
           <input
             type="text"
+            data-testid="admin_manage__input-name"
             id="userName"
             placeholder="Nome e sobrenome"
           />
@@ -45,6 +48,7 @@ export default function AdminForms() {
           Email
           <input
             type="email"
+            data-testid="admin_manage__input-email"
             id="userEmail"
             placeholder="seu-email@site.com.br"
           />
@@ -53,13 +57,17 @@ export default function AdminForms() {
           Senha
           <input
             type="password"
+            data-testid="admin_manage__input-password"
             id="userPassword"
             placeholder="**********"
           />
         </label>
         <label htmlFor="userRole">
           Tipo
-          <select id="userRole">
+          <select
+            id="userRole"
+            data-testid="admin_manage__select-role"
+          >
             <option value="seller" selected>Vendedor</option>
             <option value="customer">Cliente</option>
             <option value="administrator">Admin</option>
@@ -67,12 +75,14 @@ export default function AdminForms() {
         </label>
         <button
           type="button"
+          data-testid="admin_manage__button-register"
           onClick={ async () => {
             const name = document.getElementById('userName').value;
             const email = document.getElementById('userEmail').value;
             const password = document.getElementById('userPassword').value;
             const role = document.getElementById('userRole').value;
             await fetchPostUser(name, email, password, role);
+            await loaderUsersPage();
           } }
         >
           Cadastrar

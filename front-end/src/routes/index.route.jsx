@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
+import loaderUsersPage from '../helpers/loaderUsers';
 import {
   CheckoutPage,
   CustomerPage,
@@ -17,7 +18,6 @@ import {
   loaderSalesBySeller,
   SellerOrderDetails,
   AdminPage,
-  loaderUsersPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([

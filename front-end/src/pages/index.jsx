@@ -14,4 +14,3 @@ export * from './Customer/CheckoutPage';
 export * from './Customer/OrdersPage';
 export * from './Customer/OderDetailsPage';
 export * from './Seller/SellerOrders';
-export * from './Admin/AdminHome';
