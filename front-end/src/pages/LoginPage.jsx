@@ -24,12 +24,6 @@ function LoginPage() {
     dispatch(fetchUserLogin({ ...data, navigate }));
   };
 
-  /* const resetUser = () => {
-    dispatch(setResetUser());
-  }; */
-
-  /* user.token &&  useEffect(() => navigate('/customer/products'), [user.token, navigate]); */
-
   if (user.token) return <Navigate replace to="/customer/products" />;
   return (
     <section className="login">

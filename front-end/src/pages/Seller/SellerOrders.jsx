@@ -11,10 +11,8 @@ export async function loaderSalesBySeller() {
 
 function SellerOrders() {
   const salesSeller = useLoaderData() || [];
-  console.log(salesSeller);
   return (
     <div>
-      Seller Page
       <NavBar />
       <div className="pedidosDiv">
         { salesSeller.map((item) => OrderStatusSeller(item))}

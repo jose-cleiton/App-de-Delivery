@@ -23,7 +23,6 @@ class UsersController {
   }
 
   async getSellers(req, res) {
-    console.log('chegou');
     const result = await this.usersService.getSellers();
     return res.json(result);
   }
