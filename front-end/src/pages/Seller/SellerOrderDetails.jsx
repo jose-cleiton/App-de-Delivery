@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import OrderDetailsStatusSeller from '../../components/OrderDetailsStatusSeller';
 import OrderDetailsTableSeller from '../../components/OrdersDetailsTableSeller';
 import { getSellerSales } from '../../store';
+import NavBar from '../../components/NavBar';
 
 function SellerOrderDetails() {
   // const sales = useLoaderData();
@@ -14,6 +15,7 @@ function SellerOrderDetails() {
   console.log(sale);
   return (
     <div>
+      <NavBar />
       <div>Order Details Page Seller</div>
       <OrderDetailsStatusSeller />
       <OrderDetailsTableSeller />

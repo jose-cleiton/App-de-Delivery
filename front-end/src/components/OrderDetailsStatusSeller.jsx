@@ -53,6 +53,7 @@ function OrderDetailsStatusSeller() {
         data-testid="seller_order_details__button-preparing-check"
         className="orderDetaisButton"
         value="Preparando"
+        disabled={ status !== 'Pendente' }
         onClick={ async (e) => {
           await handleClick(e);
           const { value } = e.target;
@@ -66,7 +67,7 @@ function OrderDetailsStatusSeller() {
         data-testid="seller_order_details__button-dispatch-check"
         className="orderDetaisButton"
         value="Em Trânsito"
-        // disabled={  }
+        disabled={ status !== 'Preparando' }
         onClick={ async (e) => {
           await handleClick(e);
           dispatch(updateStatus(e.target.value));
