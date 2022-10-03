@@ -31,6 +31,20 @@ class UsersRoute {
       '/sellers',
       this.usersController.getSellers,
     );
+    this.router.get('/userList',
+    this.tokenMdwr.verify,
+    this.usersController.getAllUsers,
+    );
+
+    this.router.delete(`${this.path}/:id`,
+    this.tokenMdwr.verify,
+    this.usersController.deleteUser,
+    );
+
+    this.router.post(`${this.path}`,
+    this.tokenMdwr.verify,
+    this.usersController.createSellerOrAdmin,
+    );
   }
 }
 
