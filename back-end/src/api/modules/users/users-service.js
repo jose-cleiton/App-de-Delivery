@@ -69,6 +69,37 @@ class UsersService {
     const sellers = await this.usersRepository.findAll({ where: { role: 'seller' } });
     return sellers;
   }
+
+  async getAllUsers() {
+    const users = await this.usersRepository.findAll();
+    return users;
+  }
+
+  async deleteUser(id) {
+    await this.usersRepository.destroy({where: { id }})
+    const users = await this.usersRepository.findAll({ raw: true });
+    console.log(users);
+    return users;
+  }
+
+  async createSellerOrAdmin(name, email, password, role) {
+    const alreadyExists = await this.usersRepository.findOne({
+      where: { [Op.or]: [{ email }, { name }] },
+    });
+
+    if (alreadyExists) throw new HttpException(409, 'User already exists!');
+
+    const hashedPassword = HashHelper.encoded(password);
+
+    const user = await this.usersRepository.create({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+    return user;
+  }
 }
 
 module.exports = { UsersService };

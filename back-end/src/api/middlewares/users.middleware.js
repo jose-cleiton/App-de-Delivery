@@ -23,15 +23,16 @@ class UserMiddleware {
   }
 
   registerValidate(req, _res, next) {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
-    const { error } = userRegisterSchema.validate({ name, email, password });
+    const { error } = userRegisterSchema.validate({ name, email, password, role });
     if (error) {
       throw new HttpException(this.code.BAD_REQUEST, error.message);
     }
 
     return next();
   }
+
 }
 
 module.exports = { userMiddleware: new UserMiddleware() };
