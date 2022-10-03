@@ -25,7 +25,7 @@ function NavBar() {
       <div className="pedidosLink">
         <Link
           data-testid="customer_products__element-navbar-link-orders"
-          to="/customer/orders"
+          to={ user.role === 'seller' ? '/seller/orders' : '/customer/orders' }
           className="Link"
         >
           MEUS PEDIDOS

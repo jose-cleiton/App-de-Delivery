@@ -31,7 +31,7 @@ function OrderDetailsStatusSeller() {
         className="orderDetailsSeller"
       >
         P.Vend:
-        { seller.name}
+        {seller.name}
       </span>
 
       <span
@@ -45,9 +45,7 @@ function OrderDetailsStatusSeller() {
         data-testid="seller_order_details__element-order-details-label-delivery-status"
         className="orderDetailsStatus"
       >
-        <div>
-          {status}
-        </div>
+        {status}
       </span>
       <button
         data-testid="seller_order_details__button-preparing-check"
