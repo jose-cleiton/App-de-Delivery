@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
+import loaderUsersPage from '../helpers/loaderUsers';
 import {
   CheckoutPage,
   CustomerPage,
@@ -16,6 +17,7 @@ import {
   SellerOrders,
   loaderSalesBySeller,
   SellerOrderDetails,
+  AdminPage,
 } from '../pages';
 
 const AppRoutes = createBrowserRouter([
@@ -70,7 +72,8 @@ const AppRoutes = createBrowserRouter([
   },
   {
     path: 'admin/manage',
-    element: <div>Manage</div>,
+    element: <AdminPage />,
+    loader: loaderUsersPage,
   },
 ]);
 
