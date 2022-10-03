@@ -64,6 +64,7 @@ function OrderDetailsStatus() {
           dispatch(updateStatus(value));
         } }
         type="button"
+        disabled={ status !== 'Em Trânsito' }
       >
         MARCAR COMO ENTREGUE
       </button>
