@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../styles/FormsAdmin.css';
 import { fetchCreateUserAdmin } from '../../store/actions';
@@ -15,7 +15,20 @@ async function fetchPostUser(name, email, password, role) {
   }));
 }
 
+function DisabledBtn(name, email, password) {
+  const doze = 12;
+  const seis = 6;
+  const emailPattern = /[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const disabled = name.length >= doze
+  && emailPattern.test(email) && password.length >= seis;
+  console.log(disabled);
+  return !disabled;
+}
+
 export default function AdminForms() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const error = useSelector(getError);
   return (
     <div className="AdminPage">
@@ -41,6 +54,7 @@ export default function AdminForms() {
             type="text"
             className="InputForms"
             data-testid="admin_manage__input-name"
+            onChange={ (e) => setName(e.target.value) }
             id="userName"
             placeholder="Nome e sobrenome"
           />
@@ -51,6 +65,7 @@ export default function AdminForms() {
             type="email"
             className="InputForms"
             data-testid="admin_manage__input-email"
+            onChange={ (e) => setEmail(e.target.value) }
             id="userEmail"
             placeholder="seu-email@site.com.br"
           />
@@ -61,6 +76,7 @@ export default function AdminForms() {
             type="password"
             className="InputForms"
             data-testid="admin_manage__input-password"
+            onChange={ (e) => setPassword(e.target.value) }
             id="userPassword"
             placeholder="**********"
           />
@@ -81,10 +97,8 @@ export default function AdminForms() {
           type="button"
           data-testid="admin_manage__button-register"
           className="AdminRegisterButton"
+          disabled={ DisabledBtn(name, email, password) }
           onClick={ async () => {
-            const name = document.getElementById('userName').value;
-            const email = document.getElementById('userEmail').value;
-            const password = document.getElementById('userPassword').value;
             const role = document.getElementById('userRole').value;
             await fetchPostUser(name, email, password, role);
             await loaderUsersPage();
