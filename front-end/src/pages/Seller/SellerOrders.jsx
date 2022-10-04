@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router';
 import store from '../../store';
 import { fetchLoaderSalesBySeller } from '../../store/actions';
-import { NavBar } from '../../components';
+import NavBarSeller from '../../components/NavBarSeller';
 import OrderStatusSeller from '../../components/OrderStatusSeller';
 
 export async function loaderSalesBySeller() {
@@ -13,7 +13,7 @@ function SellerOrders() {
   const salesSeller = useLoaderData() || [];
   return (
     <div>
-      <NavBar />
+      <NavBarSeller />
       <div className="pedidosDiv">
         { salesSeller.map((item) => OrderStatusSeller(item))}
       </div>
