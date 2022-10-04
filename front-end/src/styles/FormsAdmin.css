@@ -1,0 +1,39 @@
+.AdminPage {
+    padding: 35px 60px;
+}
+
+.tableTitleAdmin {
+    font-weight: 800;
+    font-size: 20px;
+    padding-bottom: 25px;
+}
+
+.AdminRegisterForm {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: space-between;
+    background-color: #fbfffe;
+    box-shadow: 2px 2px 2px 2px grey;
+}
+
+.AdminRegisterForm label {
+    font-size: 15px;
+    padding: 0 4px;
+}
+
+.InputForms {
+    height: 35px;
+    border-radius: 6px;
+}
+
+.AdminRegisterButton {
+    background-color: #036b52;
+    color: white;
+    border: none;
+    height: 35px;
+    padding: 0 10px;
+    border-radius: 8px;
+    align-self: center;
+}
