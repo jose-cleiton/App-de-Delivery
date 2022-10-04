@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../../styles/NavBarAdmin.css';
-import { getUser, setResetUser, clearCart } from '../../store';
+import '../styles/NavBar.css';
+import { getUser, setResetUser, clearCart } from '../store';
 
-function NavBar() {
+function NavBarSeller() {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
 
@@ -16,10 +16,9 @@ function NavBar() {
       <div className="produtosLink">
         <div
           data-testid="customer_products__element-navbar-link-products"
-          to="/customer/products"
-          className="adminTitle"
+          className="Link"
         >
-          GERENCIAR USUÁRIOS
+          PEDIDOS
         </div>
       </div>
       <div className="pedidosLink">
@@ -29,7 +28,7 @@ function NavBar() {
       </div>
       <div className="userDiv">
         <span
-          className="AdminName"
+          className="userName"
           data-testid="customer_products__element-navbar-user-full-name"
         >
           {user.name || 'Nome do Usuário'}
@@ -53,4 +52,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBarSeller;

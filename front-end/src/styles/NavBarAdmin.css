@@ -1,0 +1,65 @@
+.navBar {
+    align-items: center;
+    background-color: #036b52;
+    color: white;
+    display: flex;
+    height: 45px;
+  }
+  
+  .produtosLink {
+    align-items: center;
+    background-color: #2fc18c;
+    display: flex;
+    height: 100%;
+    padding: 0 40px;
+  }
+  
+  .Link {
+    text-decoration: none;
+  }
+  
+  .adminTitle {
+    color: black;
+    font-family: Segoe UI , Tahoma , Geneva , Verdana , sans-serif;
+    font-weight: 600;
+    width: 190px;
+  }
+  
+  .pedidosLink {
+    width: 100%;
+  }
+  
+  .pedidosLink .Link {
+    color: white;
+    font-family: Segoe UI , Tahoma , Geneva , Verdana , sans-serif;
+    font-weight: 600;
+    padding-left: 40px;
+  }
+  
+  .sairLink {
+    align-items: center;
+    background-color: #056cf9;
+    display: flex;
+    height: 100%;
+    padding: 0 35px;
+  }
+  
+  .sairLink .Link {
+    color: white;
+    font-family: Segoe UI , Tahoma , Geneva , Verdana , sans-serif;
+    font-weight: 600;}
+  
+  .userDiv {
+    background-color: #421981;
+    color: white;
+    height: 100%;
+  }
+  
+  .AdminName {
+    display: flex;
+    font-size: 20px;
+    padding: 0 20px;
+    text-align: center;
+    width: 200px;
+  }
+  
